@@ -1,6 +1,6 @@
 ---
 layout: default
-title:トップページ
+title:top page
 ---
 
 # Welcom to Netchira Blog
