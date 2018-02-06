@@ -4,7 +4,9 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640">
-
+	<meta name="keywords" content="ブログ">
+	<meta name="description" content="Carefree blog by netchira">
+	
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen">
     <link rel="stylesheet" href="{{ '/assets/css/mobile.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="{{ '/assets/css/non-screen.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
@@ -17,7 +19,9 @@
         $('#main_content').headsmart()
       })
     </script>
-
+    <title>
+      {{page.title}} - @netchira
+    </title>
 {% seo %}
   </head>
 
@@ -55,10 +59,6 @@
 
       <section id="main_content">
         {{ content }}
-      </section>
-      
-      
-      <section>
         <h2>ページ一覧</h2>
         <ul>
           {% for html_page in site.html_pages %}
@@ -66,6 +66,7 @@
           {% endfor %}
         </ul>
       </section>
+      
       
       <footer>
         <span class="ribbon-outer">
