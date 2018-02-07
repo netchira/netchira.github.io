@@ -1,4 +1,4 @@
 # netchira.github.io
 Carefree blog by netchira
 
-�C�܂܂ɒԂ�܂��B
+気ままにブログを綴ります。
