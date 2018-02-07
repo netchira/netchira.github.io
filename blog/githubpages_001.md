@@ -51,23 +51,39 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 最終的に僕がうまくいった方法を記しておきます。
 
 [前提条件]
-GitHubのアカウントを持っている。
-GitHubデスクトップ版をPCにインストールしている。
-[GitHub](https://github.com/)
+- GitHubのアカウントを持っている。ここ⇒[GitHub](https://github.com/)
+- GitHubデスクトップ版をPCにインストールしている。
 
 [手順]
-1.Github Pages - Setting で {ユーザー名}.github.io のリポジトリを作成する。
-2.Github Pages - Setting でテーマを選ぶ。(Merlot theme)
-3.pages-themes/merlot というリポジトリをデスクトップにCloneする。
-4.下記フォルダを {ユーザー名}.github.ioフォルダ内に複製する。
+1. GitHub Pages - Setting で {ユーザー名}.github.io のリポジトリを作成する。
+2. GitHub Pages - Setting でテーマを選ぶ。(僕はMerlot themeにしました。)
+3. GitHub内に pages-themes/merlot というリポジトリがあるので、それをデスクトップにCloneする。
+4. pages-themes/merlot内の下記フォルダを {ユーザー名}.github.ioフォルダ内に複製する。
  _layouts
  _saas
  assets
-5.下記ファイルを {ユーザー名}.github.ioフォルダ内に複製する。
+5. pages-themes/merlot内の下記ファイルを {ユーザー名}.github.ioフォルダ内に複製する。
  thumbnail.png
+6. README.mdファイルを作成する。(GitHubで自動生成することも可)
+テキトーに{ユーザー名}.github.ioの概要説明を記述します。
+7. index.mdファイルを作成する。これがブログのトップページになります。
 
-6.
+[ブログ公開の手順(Jekyllを使って静的webページを作成する手順)]
+1. 初めに、_config.ymlファイルに、「theme: jekyll-theme-merlot」と1行記述されていることを確認する。
+2. [GitHubの記事](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/)を参考にして、
+※この記事の先頭からEnabling GitHub Pages to publish your site from master or gh-pages の 「4」まで進めれば良いです。やってることは結構簡単です。
+3. あとは、先ほど編集したレポジトリ({ユーザー名}.github.io)をCommit & Pushするだけです。
+![参考用の画像](blog/picture/GitHub-picture-001.PNG)
+
+以上でWebページの公開ができました。
+
+なお、リポジトリは「Public(全体へ公開)」になります。
+「Private」にすれば、限られた人だけに公開することができるようですが、
+こちらはGitHub有償サービスですので、使いません。
 
 
+次回からはPythonで作った便利ツールの公開・紹介をしていこうと思います。
 
+でも、地味にGitHub Pages の始め方が分かりにくかったので、
+もう少しGitHubの勉強をして、勉強メモを残していくのもいいかもなあ。
 
