@@ -73,7 +73,7 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 2. [GitHubの記事](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/)を参考にして、
 ※この記事の先頭からEnabling GitHub Pages to publish your site from master or gh-pages の 「4」まで進めれば良いです。やってることは結構簡単です。
 3. あとは、先ほど編集したレポジトリ({ユーザー名}.github.io)をCommit & Pushするだけです。
-![参考用の画像](blog/picture/GitHub-picture-001.PNG)
+![参考用の画像](picture/GitHub-picture-001.PNG)
 
 以上でWebページの公開ができました。
 
@@ -87,3 +87,6 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 でも、地味にGitHub Pages の始め方が分かりにくかったので、
 もう少しGitHubの勉強をして、勉強メモを残していくのもいいかもなあ。
 
+
+
+# 次回へ続く
