@@ -1,3 +1,2 @@
-# netchira.github.io
+#ねっちらの気ままなブログ
 Carefree blog by netchira
-ねっちらの気ままなブログ
