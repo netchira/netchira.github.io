@@ -40,7 +40,7 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 
 早速使ってみようと思います。
 
-[余談]<br>
+### 余談
 話は飛びますが、マークダウンファイルからWebページを生成するために
 Ruby インストールしたり、ローカルでJekyllのビルドを試せるようにチャレンジしたり、
 いろいろやってみました。しかし、これらはやらなくてもWebページは生成できることが
@@ -52,11 +52,11 @@ Ruby インストールしたり、ローカルでJekyllのビルドを試せる
 はい、ということで、ここでは試行錯誤の末、
 最終的にWebページ生成が成功した方法だけを記しておきます。
 
-###[前提条件]
+### 前提条件
 - GitHubのアカウントを持っている。ここ⇒[GitHub](https://github.com/)
 - GitHubデスクトップ版をPCにインストールしている。
 
-###[手順]
+### 手順
 1. GitHub Pages - Setting で {ユーザー名}.github.io のリポジトリを作成する。<br>
 
 2. GitHub Pages - Setting でテーマを選ぶ。(僕はMerlot themeにしました。)
@@ -69,7 +69,7 @@ Ruby インストールしたり、ローカルでJekyllのビルドを試せる
 テキトーに{ユーザー名}.github.ioの概要説明を記述します。
 7. index.mdファイルを作成する。これがブログのトップページになります。
 
-###[ブログ公開の手順(Jekyllを使って静的webページを作成・公開する手順)]
+### ブログ公開の手順(Jekyllを使って静的webページを作成・公開する手順)
 1. 初めに、_config.ymlファイルに、「theme: jekyll-theme-merlot」と1行記述されていることを確認する。
 2. [GitHubの記事](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/)を参考にして、<br>
 この記事の先頭からEnabling GitHub Pages to publish your site from master or gh-pages の 「4」まで進めれば良いです。<br>
