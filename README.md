@@ -1,2 +1,2 @@
-# ねっちらの気ままなブログ
-Carefree blog by netchira
+# ねっちらのエンジニアわっしょい
+Blog by netchira
