@@ -17,3 +17,7 @@
 同じように悩んでいる人がいたら、使えるなら使ってください。
 あくまで参考としてお読みください。
 
+
+### 参考URL
+- [jekyllで使う変数](https://jekyllrb.com/docs/variables/)
+- [jekyllで使う文法(liquid)](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#for-loops)
