@@ -1,6 +1,5 @@
 ---
-layout: default
-title: Blog by netchira
+layout: adv_book
 ---
 ## ソフトウェア開発におけるマネージメントについての考察(その1)
 ### 働き方改革・副業容認が問われ始めた2018年

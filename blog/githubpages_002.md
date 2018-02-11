@@ -1,7 +1,7 @@
 ---
 layout: adv_book
 ---
-## GitHub Pages 地味に始めにくい説
+## GitHub Pages SEO対策について
 
 こんにちは、netchiraです。
 

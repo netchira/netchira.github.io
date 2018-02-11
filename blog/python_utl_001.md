@@ -1,9 +1,8 @@
 ---
 layout: adv_book
-title: Blog by netchira
 ---
-### Pythonで手作業を無くせ！(第1回)
-## Microsoft Wordでの手作業を無くす
+## Pythonで手作業を無くせ！(第1回)
+### Microsoft Wordでの手作業を無くす
 
 
 

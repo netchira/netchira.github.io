@@ -1,17 +1,16 @@
 ---
 layout: adv_book
-title: Blog by netchira
 ---
-### Pythonを始めてみよう！(第1回)
-## Anacondaを使ってみる
+## Pythonを始めてみよう！(第1回)
+### Anacondaを使ってみる
 
 
 
-## 今回のゴール
+### 今回のゴール
 Pythonで開発が行える環境を用意する
 
 
-## 前提条件
+### 前提条件
 Anaconda をインストールした状態であること
 
 

@@ -1,3 +1,4 @@
 theme: jekyll-theme-merlot
 markdown: kramdown
 highlighter: rouge
+plugins: jekyll-seo-tag
