@@ -76,6 +76,8 @@ Ruby インストールしたり、ローカルでJekyllのビルドを試せる
 テキトーに{ユーザー名}.github.ioの概要説明を記述します。
 7. index.mdファイルを作成する。これがブログのトップページになります。
 
+[参考URL](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
+
 ### ブログ公開の手順(Jekyllを使って静的webページを作成・公開する手順)
 1. 初めに、_config.ymlファイルに、「theme: jekyll-theme-merlot」と1行記述されていることを確認する。
 2. [GitHubの記事](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/)を参考にして、<br>
