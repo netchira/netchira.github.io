@@ -1,5 +1,6 @@
 ---
 layout: adv_book
+title: aaa
 ---
 ## GitHub Pages 地味に始めにくい説
 
