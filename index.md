@@ -8,6 +8,9 @@ title: Blog by netchira
 - [GitHub(netchira)](https://github.com/netchira/)
 
 
+markdown: {{ site.markdown }}
+
+
 ### 勉強中・開発中
 - Python 2.7 での便利ツール
 - Python 2.7 での画像処理ツール
