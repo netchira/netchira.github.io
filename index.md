@@ -1,3 +1,6 @@
+---
+lang: ja_JP
+---
 ## Welcome to my Top Page
 ### Profile
 - netchira
