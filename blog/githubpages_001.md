@@ -1,3 +1,7 @@
+---
+layout: default
+title: Blog by netchira
+---
 ## GitHub Pages 地味に始めにくい説
 
 こんにちは、netchiraです。

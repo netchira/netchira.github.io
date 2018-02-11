@@ -2,9 +2,17 @@
 layout: adv_book
 title: Blog by netchira
 ---
-### Pythonで手作業を無くせ！(第1回)
-## Microsoft Wordでの手作業を無くす
+### Pythonを始めてみよう！(第1回)
+## Anacondaを使ってみる
 
+
+
+## 今回のゴール
+Pythonで開発が行える環境を用意する
+
+
+## 前提条件
+Anaconda をインストールした状態であること
 
 
 
