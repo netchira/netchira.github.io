@@ -1,5 +1,6 @@
 ---
 layout: adv_book
+title: Pythonで手作業を無くせ！(第1回)
 ---
 ## Pythonで手作業を無くせ！(第1回)
 ### Microsoft Wordでの手作業を無くす

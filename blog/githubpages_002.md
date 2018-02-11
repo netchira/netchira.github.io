@@ -1,5 +1,6 @@
 ---
 layout: adv_book
+title: GitHub Pages SEO対策について
 ---
 ## GitHub Pages SEO対策について
 

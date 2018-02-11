@@ -1,5 +1,6 @@
 ---
 layout: adv_book
+titel:  Pythonを始めてみよう！(第1回)
 ---
 ## Pythonを始めてみよう！(第1回)
 ### Anacondaを使ってみる
