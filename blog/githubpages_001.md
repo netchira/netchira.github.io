@@ -2,6 +2,7 @@
 layout: adv_book
 title: GitHub Pages 地味に始めにくい説
 description: GitHub Pages 地味に始めにくい説
+locale: ja_JP
 paginator:
   next_page:https://netchira.github.io/blog/githubpages_002.md
 ---
