@@ -9,6 +9,7 @@ title: Blog by netchira
 
 
 markdown: {{ site.markdown }}
+highlighter: {{ site.highlighter }}
 
 
 ### 勉強中・開発中
