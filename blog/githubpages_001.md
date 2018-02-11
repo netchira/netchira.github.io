@@ -1,6 +1,8 @@
 ---
 layout: adv_book
 title: GitHub Pages 地味に始めにくい説
+description: GitHub Pages 地味に始めにくい説
+author: ねっちら
 ---
 ## GitHub Pages 地味に始めにくい説
 
