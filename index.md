@@ -1,7 +1,3 @@
----
-layout: TopPage
-title: Blog by netchira
----
 ## Welcome to my Top Page
 ### Profile
 - netchira
@@ -9,6 +5,7 @@ title: Blog by netchira
 
 
 markdown: {{ site.markdown }}
+
 highlighter: {{ site.highlighter }}
 
 
