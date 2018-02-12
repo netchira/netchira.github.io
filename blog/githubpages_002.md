@@ -40,7 +40,7 @@ GithubPages本家のwebページを見てて、こういうのがあります。
 **その前に1言だけ！！**
 
 下記のサイトは大変役に立ちます。よかったらここも軽く目を通してから、この先をお読みください。  
-[Jekyll本家(修正の仕方)](blog.johannesmp.com/2017/02/13/fixing-jekyll-serve-on-windows/)
+[Jekyll本家(修正の仕方)](http://blog.johannesmp.com/2017/02/13/fixing-jekyll-serve-on-windows/)
 1. Install all Jekyll Dependencies すべて  
 2. Get Jekyll Server Working  
  Fix SSL “certificate verify failed”  
