@@ -1,95 +1,151 @@
 ---
-layout: adv_book
-title: GitHub Pages SEO対策について
+layout: adv_webdesign
+title: GitHub Pages を作成する時のデバッグ作業の仕方
+description: GitHub Pages を作成する時のデバッグ作業の仕方
+lang: ja_JP
 ---
-## GitHub Pages SEO対策について
+## GitHub Pages を作成する時のデバッグ作業の仕方
 
 こんにちは、netchiraです。
 
-今回のテーマは「GitHub Pagesを使ってブログを始めてみよう」です。
+今回のテーマは「GitHub Pagesでブログを作成する時のデバッグ作業の仕方」です。
 
-皆さんはブログをはじめようと思ったことがありますか。
+「ブログをデバッグ」ってかなり変な言葉かもしれませんね。笑
 
-僕は始める気は無かったです。笑
+というのも、GitHub Pages & Jekyll でwebページを作成できるので、
+色々と記事を書こうと思い始めたところ、
+「いちいち GitHub 上で Commit & Push しないとWebページが見れない」のが
+とても面倒だなーと思うようになりました。
 
-趣味でPythonを使った便利ツールを開発(作成、と呼ぶ程度か)していて、
-最初、「これをオープンソースにしてみよう」と思いました。
+特に、SEO対策について今なお勉強中なのですが、
+- jekyllの文法がわからん
+- jekyll-seo-tagってどうやって使うん？
+- 実際にできたHTMLのソースを見て、「うん？思うようになっていない。。。」
 
-でも、ソースを公開するなら、ちょっとした説明を追加して(これが備忘録になる)、
-ブログで公開してみようか、と思い始めるようになりました。
+・・・といった壁にぶち当たっている訳です。
 
-ブログを始めるには何が必要なのかググってみました。
+jekyllで生成するwebページをローカル(自分のPC上)で生成できる方法があることは
+GithubPages本家のwebページを見てて、こういうのがあります。
 
-そこで浮かび上がった課題は、、、
+[Setting up your GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
 
-- HTML・CSSを勉強する必要がある。
-- ドメインを取得する必要がある？自分のwebページのためにお金が必要なのか？
+ここでは、Rubyをインストールして、ごちゃごちゃすればできる、と書いているのですが、
+かなりコストが高かったです。笑
 
-・・・といったことでした。
+ここでは試行錯誤の末、最終的に成功した方法だけを記しておきます。
 
-その後、色々ググっていたところ、
-「GitHubでもブログが始められる」という情報を入手しました。
+以下、GitHub本家の[Setting up your GitHub Pages site locally with Jekyll]で紹介されている
+手順に従って記述していきます。
 
-その名も、GitHub Pagesです。
+**その前に1言だけ！！**
 
-まず、GitHub Pagesって何ぞや、という方のために参考URLの紹介です。
+下記のサイトは大変役に立ちます。よかったらここも軽く目を通してから、この先をお読みください。  
+[Jekyll本家(修正の仕方)](blog.johannesmp.com/2017/02/13/fixing-jekyll-serve-on-windows/)
+1. Install all Jekyll Dependencies すべて  
+2. Get Jekyll Server Working  
+ Fix SSL “certificate verify failed”  
+ Fix “No repo name found”  
+ Fix “The GitHub API credentials you provided aren’t valid.”  
 
-[GitHub Pages(本家)](https://pages.github.com/)
+**では本題に移ります！！**
 
-この本家のページが紹介している動画を見てみたところ、
-どうやら「Jekyll」というツールを使うことで静的webページが簡単に生成できることを知りました。
+### Requirements
+1. [RubyInstaller for Windows](https://rubyinstaller.org/downloads/)に行く。
+2. RubyInstallers: Ruby 2.3.3 をダウンロードする。
+そしてインストールする。
+指定するオプションは次の2つ。
+Rubyの実行ファイルへ環境変数PATHを設定する
+.rbと.rbwファイルをRubyに関連付ける にチェックを入れてインストール
+(こちらは簡単ですね。)
 
-Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
-静的webページを生成する仕組みをもっているそうです。
+3. DEVEROMENT KIT : For use with Ruby 2.0 to 2.3 をダウンロードする。
+ダウンロードしたファイルは、下記ディレクトリを作成して起き、ここに置く。
+C:\RubyDevKit
 
-早速使ってみようと思います。
+4. DEVEROMENT KIT はRubyコマンドライン上で初期設定する。Git Bashを起動して行う。
+```
+$ cd C:\RubyDevKit
+$ ruby dk.rb init
+$ ruby dk.rb install
+```
+5. Bundler をインストールする。
+```
+$ gem install bundler
+```
 
-### その前に余談
-話は飛びますが、マークダウンファイルからWebページを生成するために
-Ruby インストールしたり、ローカルでJekyllのビルドを試せるようにチャレンジしたり、
-いろいろやってみました。しかし、これらはやらなくてもWebページは生成できることが
-分かりました。<br>
-ちなみにGitHub Pagesが対応している各種ツールのバージョンはここで見れます。
-[GitHub Pagesが対応している各種ツールのバージョン一覧](https://pages.github.com/versions/)
+### Step 1
+masterブランチでGithubPagesを作成していくので、何もしなくてよい。
+
+### Step 2
+1. ファイル名「Gemfile(拡張子：無し)」を作成する。
+(右クリック→新規作成→テキスト ドキュメントから.txtファイルを作成して、拡張子を消して保存)
+(※ファイルの拡張子が表示されない場合は、「拡張子の表示方法」とググってみてください。)
+2. Gemfile の内容はたった2行だけ。
+```
+source 'https://rubygems.org'
+gem 'github-pages', group: :jekyll_plugins
+```
+
+※ちなみに、ビルド時に下記のようにワーニングが出ますが、
+下記1行は不要です。含めるとビルドできなくなります。
+```
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+```
+
+3. Jekyll の更新を行う。
+```
+$ bundle install
+```
+
+### Step 3
+何もしなくてよい。
+
+### Step 4
+1. いよいよJekyllでのwebページ生成です。初めにコマンドライン上で、
+{ユーザー名}.github.io のディレクトリまでcdします。
+2. 以下を実行します。
+```
+$ bundle exec jekyll serve
+```
+3. しかし、うまくいきません。残念！
+そこで、下記のページを参考にしながら対策を実施していきます。
+- _config.ymlファイルに「repository: (ユーザー名)/(リポジトリ名)」を1行追加する。
+- [http://curl.haxx.se/ca/cacert.pem](http://curl.haxx.se/ca/cacert.pem) からSSL証明書をダウンロードしてくる。
+- ダウンロードした`cacert.pem`を C:\RubyDevKit\SSLCert に置く。
+- その後、環境変数=SSL_CERT_FILE を追加し、値=さっきのディレクトリ を設定します。
+[環境変数の編集方法(参考)](https://support.borndigital.co.jp/hc/ja/articles/115010667707-環境変数の追加する方法について-Windows10-)
+- GitHub API 用の認証が必要となるため、アクセストークンを [https://github.com/settings/tokens](https://github.com/settings/tokens) で取得する。
+- その後、環境変数=JEKYLL_GITHUB_TOKEN を追加し、値=(40文字の英数字の羅列) を設定します。
+
+4. 一度、コマンドライン上で`exit`と打ち込み、Git Bash の画面を閉じます。(上記の作業でRubyが必要とする情報が更新されたので、一旦リセット。)
+5. 以下を再び実行します。
+```
+$ bundle exec jekyll serve
+```
+ワーニング及びエラーが出なくなったと思います。
+6. ブラウザで下記のように入力。
+```
+http://127.0.0.1:4000
+```
+すると、ここでwebページの出来映えが確認できます。
+7. `Ctrl + C` で ローカル上でのJekyllの動作を止めます。
+
+これで、いちいち Commit & Push しなくても、webページの出来映え閣員ができる環境が構築できました。
 
 
-**はい、ということで、ここでは試行錯誤の末、
-最終的にWebページ生成が成功した方法だけを記しておきます。**
 
-### 前提条件
-- GitHubのアカウントを持っている。ここ⇒[GitHub](https://github.com/)
-- GitHubデスクトップ版をPCにインストールしている。
+### 以後のデバッグ作業では
+1. {ユーザー名}.github.io のディレクトリまでcdします。
+2. コマンドライン上で以下を実行します。
+```
+$ bundle exec jekyll serve
+```
 
-### 手順
-1. GitHub Pages - Setting で {ユーザー名}.github.io のリポジトリを作成する。<br>
+### ぼやき
+今更なのですが、Jekyll のビルドは、生成するHTMLが10個にも満たないのに、
+8-10秒くらいかかります。意外と時間かかりますね。仕方ないか。
 
-2. GitHub Pages - Setting でテーマを選ぶ。(僕はMerlot themeにしました。)
-3. GitHub内に pages-themes/merlot というリポジトリがあるので、それをデスクトップにCloneする。
-4. pages-themes/merlot内の下記フォルダを {ユーザー名}.github.ioフォルダ内に複製する。<br>
- _layouts<br> _saas<br> assets<br>
-5. pages-themes/merlot内の下記ファイルを {ユーザー名}.github.ioフォルダ内に複製する。<br>
- thumbnail.png
-6. README.mdファイルを作成する。(GitHubで自動生成することも可)<br>
-テキトーに{ユーザー名}.github.ioの概要説明を記述します。
-7. index.mdファイルを作成する。これがブログのトップページになります。
+あと、余談ですが、マークダウンで記述されたファイルをJekyllでHTML生成する場合は、
+paginationが使えないらしいです。使ってみたかったなあ・・・
 
-### ブログ公開の手順(Jekyllを使って静的webページを作成・公開する手順)
-1. 初めに、_config.ymlファイルに、「theme: jekyll-theme-merlot」と1行記述されていることを確認する。
-2. [GitHubの記事](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/)を参考にして、<br>
-この記事の先頭からEnabling GitHub Pages to publish your site from master or gh-pages の 「4」まで進めれば良いです。<br>
-やってることは結構簡単です。
-3. あとは、先ほど編集したレポジトリ({ユーザー名}.github.io)をCommit & Pushするだけです。<br>
-![参考用の画像](picture/GitHub-picture-001.PNG)
-
-以上でWebページの公開ができました。
-
-なお、リポジトリは「Public(全体へ公開)」になります。<br>
-「Private」にすれば、限られた人だけに公開することができるようですが、<br>
-こちらはGitHub有償サービスですので、使いません。
-
-
-次回からはPythonで作った便利ツールの公開・紹介をしていこうと思います。
-
-でも、地味にGitHub Pages の始め方が分かりにくかったので、
-もう少しGitHubの勉強をして、勉強メモを残していくのもいいかもなあ。
-
+[https://jekyllrb.com/docs/pagination/](https://jekyllrb.com/docs/pagination/)

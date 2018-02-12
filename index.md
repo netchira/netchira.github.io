@@ -1,4 +1,6 @@
 ---
+layout: default
+title: Welcome to my Top Page
 lang: ja_JP
 ---
 ## Welcome to my Top Page
@@ -30,4 +32,3 @@ highlighter: {{ site.highlighter }}
 ### 参考URL
 - [jekyllで使用する変数](https://jekyllrb.com/docs/variables/)
 - [jekyllで使用する文法(liquid)](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#for-loops)
-

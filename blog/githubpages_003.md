@@ -1,10 +1,10 @@
 ---
-layout: adv_webdesign
-title: GitHub Pages 地味に始めにくい説
-description: GitHub Pages 地味に始めにくい説
+layout: adv_book
+title: GitHub Pages SEO対策について
+description: GitHub Pages SEO対策について
 lang: ja_JP
 ---
-## GitHub Pages 地味に始めにくい説
+## GitHub Pages SEO対策について
 
 こんにちは、netchiraです。
 
@@ -46,6 +46,18 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 
 早速使ってみようと思います。
 
+### その前に余談
+話は飛びますが、マークダウンファイルからWebページを生成するために
+Ruby インストールしたり、ローカルでJekyllのビルドを試せるようにチャレンジしたり、
+いろいろやってみました。しかし、これらはやらなくてもWebページは生成できることが
+分かりました。<br>
+ちなみにGitHub Pagesが対応している各種ツールのバージョンはここで見れます。
+[GitHub Pagesが対応している各種ツールのバージョン一覧](https://pages.github.com/versions/)
+
+
+**はい、ということで、ここでは試行錯誤の末、
+最終的にWebページ生成が成功した方法だけを記しておきます。**
+
 ### 前提条件
 - GitHubのアカウントを持っている。ここ⇒[GitHub](https://github.com/)
 - GitHubデスクトップ版をPCにインストールしている。
@@ -62,8 +74,6 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 6. README.mdファイルを作成する。(GitHubで自動生成することも可)<br>
 テキトーに{ユーザー名}.github.ioの概要説明を記述します。
 7. index.mdファイルを作成する。これがブログのトップページになります。
-
-[参考URL](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/)
 
 ### ブログ公開の手順(Jekyllを使って静的webページを作成・公開する手順)
 1. 初めに、_config.ymlファイルに、「theme: jekyll-theme-merlot」と1行記述されていることを確認する。

@@ -4,8 +4,6 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640">
-    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
-    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen">
     <link rel="stylesheet" href="{{ '/assets/css/mobile.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
@@ -60,11 +58,9 @@
       <section id="main_content">
         {{ content }}
         <h3>ページ一覧</h3>
-        <ul>
-          {% for html_page in site.html_pages %}
-          <li><a href="{{ html_page.url }}">{{ html_page.title }}</a></li>
-          {% endfor %}
-        </ul>
+        {% for html_page in site.html_pages %}
+        <li><a href="{{ html_page.url }}">{{ html_page.title }}</a></li>
+        {% endfor %}
       </section>
       
       

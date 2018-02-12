@@ -3,4 +3,4 @@ markdown: kramdown
 highlighter: rouge
 plugins:
  - jekyll-seo-tag
-paginate: 2 # the number of post per page
+repository: netchira/netchira.github.io
