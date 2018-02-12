@@ -1,6 +1,14 @@
-theme: jekyll-theme-merlot
+repository: netchira/netchira.github.io
+
 markdown: kramdown
 highlighter: rouge
+
+permalink: none
+
+theme: jekyll-theme-merlot
+
+url: "https://netchira.github.io" 
 plugins:
  - jekyll-seo-tag
-repository: netchira/netchira.github.io
+ - jekyll-sitemap
+ 
