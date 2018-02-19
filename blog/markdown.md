@@ -1,3 +1,14 @@
+---
+layout: default
+title: サンプル
+description: サンプル
+lang: ja_JP
+---
+## サンプルページ
+
+こんにちは、netchiraです。
+
+
 ```markdown
 Syntax highlighted code block
 
