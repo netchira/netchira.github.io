@@ -11,4 +11,5 @@ url: "https://netchira.github.io"
 plugins:
  - jekyll-seo-tag
  - jekyll-sitemap
+ - jekyll-feed
  
