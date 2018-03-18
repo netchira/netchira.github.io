@@ -5,7 +5,7 @@ highlighter: rouge
 
 permalink: none
 
-theme: jekyll-theme-merlot
+theme: jekyll-theme-cayman
 
 url: "https://netchira.github.io" 
 plugins:
