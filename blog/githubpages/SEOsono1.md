@@ -4,7 +4,7 @@ title: GitHub Pages で作成したwebページを検索エンジンに見つけ
 description: GitHub Pages で作成したブログがGoogle検索にヒットするようになるまでの手順について
 lang: ja_JP
 ---
-## 悩み：GitHub Pages で作成したwebページにGoogle検索からたどり着けない…
+## GitHub Pages で作成したwebページを検索エンジンに見つけてもらうために
 
 こんにちは、netchiraです。
 
@@ -21,7 +21,10 @@ lang: ja_JP
 
 
 ### Google Search Console を使用してみる
-Google Search Console を使うと、「Google がコンテンツを検出できるかどうか」、「Google 検索結果でのパフォーマンス」という 2 つの情報を確認することができるようになります。
+Google Search Console を使うと、
+「Google がコンテンツを検出できるかどうか」
+「Google 検索結果でのパフォーマンス」
+を確認することができるようになります。
 
 [ヘルプ: Google Search Console](https://support.google.com/webmasters/answer/4559176?hl=ja&ref_topic=3309469)
 
@@ -66,8 +69,7 @@ https://netchira.github.io/sitemap.xml
 - クロール - 新しいウェブページや更新されたウェブページを検出するプロセスのことです。Google はリンクをたどる、サイトマップを読み込むなど、さまざまな手段で URL を検出します。Google はウェブをクロールして新しいページを検出し、（該当する場合は）そのページをインデックスに登録します。
 - クローラ - ウェブのページをクロール（取得）して、そのページをインデックスに登録する、自動化されたソフトウェアです。
 
-
-以下、参照先(原文)です。
+以下、引用元(原文)です。
 
 [ヘルプ: 検索エンジン最適化（SEO）スターター ガイド](https://support.google.com/webmasters/answer/7451184?hl=ja&ref_topic=3309469)
 
