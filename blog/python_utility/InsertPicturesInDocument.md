@@ -1,7 +1,7 @@
 ---
 layout: adv_book
-title: Pythonで手作業を無くせ！(第1回)
-description: GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。
+title: Pythonで手作業を無くせ！(第1回: Wordに画像ファイルを自動挿入していく)
+description: Microsoft Word ドキュメントに画像を自動で挿入していくスクリプトを作成しました。
 lang: ja_JP
 ---
 ## Pythonで手作業を無くせ！(第1回)
@@ -9,8 +9,14 @@ lang: ja_JP
 
 
 ### 前提条件
-Python 2.7 を使用
-開発環境として Anaconda および Spyder (3.2.6) を使用
+- Python 2.7 を使用
+- 開発環境として Anaconda および Spyderを使用
+- 下記モジュールをAnacondaにインストール
+pip install docx
+pip install Document
+pip install pydocx
+pip install python-docx
+(※もしかしたら、python-docxだけで良いかもしれません。)
 
 
 ### 処理内容
@@ -224,3 +230,7 @@ root.mainloop()
 
 以上です。
 これで、何かの時にラクできるかも♪
+
+### 参考URL
+[python-docx](https://python-docx.readthedocs.io/en/latest/#)
+

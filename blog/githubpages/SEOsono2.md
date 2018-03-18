@@ -1,6 +1,6 @@
 ---
 layout: adv_webdesign
-title: GitHub Pages でのSEO対策に
+title: GitHub Pages でのSEO対策について
 description: GitHub Pages でのSEO対策について考察します
 lang: ja_JP
 ---
@@ -59,7 +59,7 @@ SEOスターターガイドには以下のような記述があります。
 ```
 ---
 layout: default
-title: GitHub Pages でのSEO対策に
+title: GitHub Pages でのSEO対策について
 description: GitHub Pages でのSEO対策について考察します
 lang: ja_JP
 ---

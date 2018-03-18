@@ -1,7 +1,6 @@
 from distutils.core import setup
 import py2exe
 
-# 設定内容
 script = 'CompareTxt.py'
 option = {
     'compressed': 1,
@@ -9,7 +8,6 @@ option = {
     'bundle_files': 3,
 }
 
-# セットアップ処理
 setup(
     options = {
         'py2exe': option,

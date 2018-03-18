@@ -39,10 +39,12 @@ py2exeを使い、exeファイルの生成を行います。
 
 留意点：PCにインストールしているPythonが32bit/64bitのどちらかによって、インストールするpy2exeのバージョンが決まるそうです。
 
-さて、次にやることは、exeを作るためのsetup.pyの作成です。
-私は以下のようなsetup.pyを書きました。
+さて、次にやることは、exeを作るためのセットアップファイル(.py)の作成です。
+一般的には'setup.py'というファイル名で作成します。
 
-```
+私は以下のようなsetup_exe.pyを書きました。
+
+```setup_exe.py
 from distutils.core import setup
 import py2exe
 
@@ -63,22 +65,33 @@ setup(
     zipfile = None,
 )
 ```
-このsetup.pyは、今回exe化したいpythonファイル(CompareTxt.py)と同じ場所に置きます。
 
-なお、色んな方がsetup.pyを書いているので、ググってみると参考になると思います。
+このsetup_exe.pyは、今回exe化したいpythonファイル(CompareTxt.py)と同じ場所に置きます。
+
+なお、色んな方がセットアップファイル(setup.py)を書いているので、ググってみると参考になると思います。
 
 さて、ここまでくると、ようやくexeファイル生成が実行できるようになります。
+以下の2つの手順で完了です。
 
-Anaconda コマンドプロンプトでexeファイルにしたいpyファイルと、setup.pyを格納しているフォルダまでcdしていきます。
-次に以下を実行します。
+1. Anaconda Prompt で'exeファイルにしたいpyファイル'および'setup_exe.py'が格納されているフォルダまでcd(change directory)していきます。
 ```
-python setup.py py2exe
+cd HogeHogeHoge/HogaHogaHoga
 ```
-すると、先ほどcdした場所に/distというフォルダが出来て、その中に、見事exeファイルができています！やったね！
+
+2. 次に以下を実行します。
+```
+python setup_exe.py py2exe
+```
+⇒すると、先ほどcdした場所に/distというフォルダが出来て、その中に、見事exeファイルができています！やったね！
 
 ### 余談その1:dllのしがらみ
 以前、生成したexeファイルだけを別のPCで実行しようとしたのですが、アプリケーション実行時に必要なdllがないと動作できないようで、「exeファイルにしたいpyファイルでimportしているライブラリ」のdllが重要っぽいです。つまり、/distフォルダごと別PCに移さないと実行できません、ということでした。
 
+### 余談その2:optionについて
+py2exeのoptionって何を表しているのでしょう。
+答えは以下に記載されています。
+
+[py2exe](http://www.py2exe.org/index.cgi/ListOfOptions)
 
 ### Windowで動作するインストーラの作り方
 cx_Freezeを使い、msiファイルの生成を行います。
@@ -87,9 +100,9 @@ cx_Freezeを使い、msiファイルの生成を行います。
 
 [cx_Freezeダウンロード先](https://ja.osdn.net/projects/sfnet_cx-freeze/)
 
-次にやることは、msiを作るためのsetup.pyの作成です。
+次にやることは、msiを作るためのセットアップファイル(.py)の作成です。
 先ほどと区別するため、setup_msi.pyというファイル名にします。
-こちらは、setup.pyに比べてソースコードが長くなっているので、
+こちらは、setup_exe.pyに比べてソースコードが長くなっているので、
 詳しくはGitHub上の私のリポジトリを参照してください。
 
 [GitHub/netchira/python](https://github.com/netchira/netchira.github.io/tree/master/python)
