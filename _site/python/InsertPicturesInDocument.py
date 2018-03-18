@@ -1,39 +1,3 @@
----
-layout: adv_book
-title: Pythonで手作業を無くせ！(第1回)
----
-## Pythonで手作業を無くせ！(第1回)
-### Microsoft Wordでの手作業を無くす
-
-
-### 前提条件
-Python 2.7 を使用
-開発環境として Anaconda および Spyder (3.2.6) を使用
-
-
-### 処理内容
-こんなものを作りました。
-![main_window](picture/InsertPicturesInDocument/main_window.PNG)
-
-やってることは、
-- 画像ファイルの拡張子を選択する
-- ファイルを選択する
-- フォルダーを選択する
-- 一番下のボタンをクリックすると、Wordファイルに画像を張り付けていく処理を行う
-- エラー時にメッセージ表示(少しだけ)
-
-
-![main_window](picture/InsertPicturesInDocument/open_file.PNG)
-![main_window](picture/InsertPicturesInDocument/select_folder.PNG)
-![main_window](picture/InsertPicturesInDocument/error_message.PNG)
-
-
-
-詳しくは下記ソースを見てください。
-
-
-### ソースコード
-```markdown
 # -*- coding: utf-8 -*-
 """
 Created on Fri Dec 29 20:28:35 2017
@@ -217,8 +181,3 @@ def GetFileName(file_path):
     
 #mainloop
 root.mainloop()
-
-```
-
-以上です。
-これで、何かの時にラクできるかも♪

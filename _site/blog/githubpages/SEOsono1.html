@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja_JP">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115020946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115020946-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1404104114391974",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>
+      GitHub Pages で作成したwebページを検索エンジンに見つけてもらうために - @netchira
+    </title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>GitHub Pages で作成したwebページを検索エンジンに見つけてもらうために | netchira.github.io</title>
+<meta property="og:title" content="GitHub Pages で作成したwebページを検索エンジンに見つけてもらうために" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="GitHub Pages で作成したブログがGoogle検索にヒットするようになるまでの手順について" />
+<meta property="og:description" content="GitHub Pages で作成したブログがGoogle検索にヒットするようになるまでの手順について" />
+<link rel="canonical" href="http://localhost:4000/blog/githubpages/SEOsono1.html" />
+<meta property="og:url" content="http://localhost:4000/blog/githubpages/SEOsono1.html" />
+<meta property="og:site_name" content="netchira.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"GitHub Pages で作成したブログがGoogle検索にヒットするようになるまでの手順について","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/githubpages/SEOsono1.html","publisher":null,"image":null,"headline":"GitHub Pages で作成したwebページを検索エンジンに見つけてもらうために","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="http://github.com/netchira/netchira.github.io">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>netchira.github.io</h1>
+            <h2>ねっちらのエンジニアわっしょい</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <div id="no-downloads">
+          <span class="inner">
+          </span>
+        </div>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2 id="悩みgithub-pages-で作成したwebページにgoogle検索からたどり着けない">悩み：GitHub Pages で作成したwebページにGoogle検索からたどり着けない…</h2>
+
+<p>こんにちは、netchiraです。</p>
+
+<p>今回は、ブログ等の自分のwebページを運営し始めた人に向けて、検索エンジンにインデックスされるようになるための手順について試行錯誤したので、それを記していきたいと思います。</p>
+
+<p>私もGitHub Pagesを使ってwebページを作成したのは良いのですが、最初は自分のページがヒットしなかったんですよね…</p>
+
+<p>いくつか試した方法は以下です。</p>
+
+<ul>
+  <li>Google Search Console を使用</li>
+  <li>GitHub Pagesプラグインjekyll-sitemapを使用</li>
+</ul>
+
+<p>それでは、それぞれについて述べていきます。</p>
+
+<h3 id="google-search-console-を使用してみる">Google Search Console を使用してみる</h3>
+<p>Google Search Console を使うと、「Google がコンテンツを検出できるかどうか」、「Google 検索結果でのパフォーマンス」という 2 つの情報を確認することができるようになります。</p>
+
+<p><a href="https://support.google.com/webmasters/answer/4559176?hl=ja&amp;ref_topic=3309469">ヘルプ: Google Search Console</a></p>
+
+<p>自分のGoogleアカウントと自分のwebページを持っていればすぐに始められます。</p>
+
+<p>私として、このヘルプを読んでみて思ったのは、Google検索で「site:(自分のwebページのURL)」と検索して、自分のwebページがヒットすれば、Google検索に自分のwebページがインデックスされていることが確認できるので、これが1つのゴールなのかな、と思います。</p>
+
+<p>参考にしてみてください。</p>
+
+<h3 id="サイトマップを作成する">サイトマップを作成する</h3>
+<p>GitHub Pagesを始めると、’_config.yml’というファイルが生成されていると思います。
+そこに下記の2行を足して、プラグインを利用できるようにします。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins:
+ - jekyll-sitemap
+</code></pre></div></div>
+
+<p>(すでに、’plugins:’を記述している場合は、’ - jekyll-sitemap’を加えるだけで良いです。)</p>
+
+<p>これで、Jekyllによって自動的にsitemap.xmlが生成されます。</p>
+
+<p>このファイルの内容を確認したい場合は、</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://{ユーザー名}.github.io/sitemap.xml
+</code></pre></div></div>
+
+<p>※ちなみに私の場合だと、</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://netchira.github.io/sitemap.xml
+</code></pre></div></div>
+<p>にアクセスすると見れます。</p>
+
+<p>この「サイトマップ」は、検索エンジンのために作成します。
+作成しておくと、(たぶん)自分webページがGoogleにインデックスされやすくなります。</p>
+
+<p>以下、Googleが提供している「検索エンジン最適化（SEO）スターター ガイド」に記載されている「用語集」の内容の抜粋です。</p>
+
+<ul>
+  <li>インデックス - Google は認識したすべてのウェブページを「インデックス」に格納します。各ページのインデックス エントリにはそのページのコンテンツと場所（URL）が記述されています。「インデックスに登録する」とは、Google があるページを取得し、そのページを読み込んで、インデックスに追加することを指します。(後略)</li>
+  <li>クロール - 新しいウェブページや更新されたウェブページを検出するプロセスのことです。Google はリンクをたどる、サイトマップを読み込むなど、さまざまな手段で URL を検出します。Google はウェブをクロールして新しいページを検出し、（該当する場合は）そのページをインデックスに登録します。</li>
+  <li>クローラ - ウェブのページをクロール（取得）して、そのページをインデックスに登録する、自動化されたソフトウェアです。</li>
+</ul>
+
+<p>以下、参照先(原文)です。</p>
+
+<p><a href="https://support.google.com/webmasters/answer/7451184?hl=ja&amp;ref_topic=3309469">ヘルプ: 検索エンジン最適化（SEO）スターター ガイド</a></p>
+
+<p>以上です。</p>
+
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+                
+          Webサイトをもっと手軽に作成したい方へ！
+          <a href="https://px.a8.net/svt/ejp?a8mat=2ZAKWE+5O7P9U+50+4SUKCH" target="_blank" rel="nofollow">
+          <img border="0" width="468" height="60" alt="" src="https://www23.a8.net/svt/bgt?aid=180212558343&wid=001&eno=01&mid=s00000000018029032000&mc=1"></a>
+          <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=2ZAKWE+5O7P9U+50+4SUKCH" alt="">
+
+         <a href="https://px.a8.net/svt/ejp?a8mat=2ZAHRX+5O7P9U+348+1U1TUP" target="_blank" rel="nofollow">
+         <img border="0" width="728" height="90" alt="" src="https://www28.a8.net/svt/bgt?aid=180208509343&wid=001&eno=01&mid=s00000000404011094000&mc=1"></a>
+         <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=2ZAHRX+5O7P9U+348+1U1TUP" alt="">
+      
+      
+      </section>
+      
+      
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="http://github.com/netchira">netchira</a> can be found on <a href="http://github.com/netchira/netchira.github.io">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja_JP">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="google-site-verification" content="nOhzKhHvS3xHQE1s9dfvrH-cMyWLRWlBIomf0E5M6lA" />
+    
+    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115020946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115020946-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1404104114391974",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>
+      Pythonを始めてみよう！(第2回:exeファイル・msiファイルを生成する) - @netchira
+    </title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Pythonを始めてみよう！(第2回:exeファイル・msiファイルを生成する) | netchira.github.io</title>
+<meta property="og:title" content="Pythonを始めてみよう！(第2回:exeファイル・msiファイルを生成する)" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="Pythonで作成したアプリケーションをWindows上で実行できるようにします。" />
+<meta property="og:description" content="Pythonで作成したアプリケーションをWindows上で実行できるようにします。" />
+<link rel="canonical" href="http://localhost:4000/blog/python_start/CreateExeOrMsi.html" />
+<meta property="og:url" content="http://localhost:4000/blog/python_start/CreateExeOrMsi.html" />
+<meta property="og:site_name" content="netchira.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"Pythonで作成したアプリケーションをWindows上で実行できるようにします。","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/python_start/CreateExeOrMsi.html","publisher":null,"image":null,"headline":"Pythonを始めてみよう！(第2回:exeファイル・msiファイルを生成する)","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="http://github.com/netchira/netchira.github.io">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>netchira.github.io</h1>
+            <h2>ねっちらのエンジニアわっしょい</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <div id="no-downloads">
+          <span class="inner">
+          </span>
+        </div>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2 id="pythonを始めてみよう第2回exeファイルmsiファイルを生成する">Pythonを始めてみよう！(第2回:exeファイル・msiファイルを生成する)</h2>
+
+<p>こんにちは、netchiraです。
+今回はPythonで作ったアプリケーションをPCで使えるようにしたいと思います。</p>
+
+<h3 id="前提条件">前提条件</h3>
+<p>OS はWindows 10(64bit)を使用
+Python 2.7 を使用
+開発環境として Anaconda2(64bit) および Spyderを使用
+py2exe(64bit, Python 2.7)を使用
+cx_Freeze(64bit, Python 2.7)を使用</p>
+
+<h3 id="pythonアプリケーションの実行の仕方を検討">Pythonアプリケーションの実行の仕方を検討</h3>
+
+<p>主な方法として、以下の2通りを検討していきます。</p>
+
+<ul>
+  <li>.exeファイルを作成して、それを実行する。</li>
+  <li>PCにインストールして、それを実行する。</li>
+</ul>
+
+<p>Spyderで実行(及びデバッグ)できることは当然なので、今回はSpyderをインストールしていないPCでも実行できるようにしていきたいと思います。</p>
+
+<p>下記に方法を記述していきます。</p>
+
+<p>Attention：なお、下記の方法以外にも実現方法はあると思いますが、自分が気に入った方法だけを備忘録がてら記述していますので、読者の方はそのつもりでご一読ください。</p>
+
+<h3 id="exeファイルの作り方">exeファイルの作り方</h3>
+<p>py2exeを使い、exeファイルの生成を行います。</p>
+
+<p>初めにpy2exeをPCにインストールします。</p>
+
+<p><a href="https://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/">py2exeダウンロード先</a></p>
+
+<p>留意点：PCにインストールしているPythonが32bit/64bitのどちらかによって、インストールするpy2exeのバージョンが決まるそうです。</p>
+
+<p>さて、次にやることは、exeを作るためのsetup.pyの作成です。
+私は以下のようなsetup.pyを書きました。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from distutils.core import setup
+import py2exe
+
+script = 'CompareTxt.py'
+option = {
+    'compressed': 1,
+    'optimize': 2,
+    'bundle_files': 3,
+}
+
+setup(
+    options = {
+        'py2exe': option,
+    },
+    console = [
+        {'script': script }
+    ],
+    zipfile = None,
+)
+</code></pre></div></div>
+<p>このsetup.pyは、今回exe化したいpythonファイル(CompareTxt.py)と同じ場所に置きます。</p>
+
+<p>なお、色んな方がsetup.pyを書いているので、ググってみると参考になると思います。</p>
+
+<p>さて、ここまでくると、ようやくexeファイル生成が実行できるようになります。</p>
+
+<p>Anaconda コマンドプロンプトでexeファイルにしたいpyファイルと、setup.pyを格納しているフォルダまでcdしていきます。
+次に以下を実行します。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup.py py2exe
+</code></pre></div></div>
+<p>すると、先ほどcdした場所に/distというフォルダが出来て、その中に、見事exeファイルができています！やったね！</p>
+
+<h3 id="余談その1dllのしがらみ">余談その1:dllのしがらみ</h3>
+<p>以前、生成したexeファイルだけを別のPCで実行しようとしたのですが、アプリケーション実行時に必要なdllがないと動作できないようで、「exeファイルにしたいpyファイルでimportしているライブラリ」のdllが重要っぽいです。つまり、/distフォルダごと別PCに移さないと実行できません、ということでした。</p>
+
+<h3 id="windowで動作するインストーラの作り方">Windowで動作するインストーラの作り方</h3>
+<p>cx_Freezeを使い、msiファイルの生成を行います。</p>
+
+<p>初めにcx_FreezeをPCにインストールします。</p>
+
+<p><a href="https://ja.osdn.net/projects/sfnet_cx-freeze/">cx_Freezeダウンロード先</a></p>
+
+<p>次にやることは、msiを作るためのsetup.pyの作成です。
+先ほどと区別するため、setup_msi.pyというファイル名にします。
+こちらは、setup.pyに比べてソースコードが長くなっているので、
+詳しくはGitHub上の私のリポジトリを参照してください。</p>
+
+<p><a href="https://github.com/netchira/netchira.github.io/tree/master/python">GitHub/netchira/python</a>
+←ここが私のリポジトリです。</p>
+
+<p>Anaconda コマンドプロンプトでmsiファイルにしたいpyファイルと、setup_msi.pyを格納しているフォルダまでcdしていきます。
+次に以下を実行します。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup_msi.py bdist_msi
+</code></pre></div></div>
+
+<p>すると、先ほどcdした場所に/distというフォルダが出来て、その中に、見事msiファイルができています！やったね！</p>
+
+<p>ちなみに<code class="highlighter-rouge">cx_Freeze Python exe</code>とかでググってみると色々出てきます。</p>
+
+<p>また、私は今回セットアップ用のファイルをsetup_msi.pyと呼びましたが、
+これは一般的ではないようです。setup.pyと呼ぶべきなのだとか。。。
+(自分勝手なファイル名にしてます。スミマセン。)</p>
+
+<h3 id="余談その2アイコンファイルico作成方法">余談その2：アイコンファイル(.ico)作成方法</h3>
+<p>ググったら一発なのですが、便利なサイトがあったので紹介します。</p>
+
+<p><a href="https://ao-system.net/alphaicon/">.icoファイル生成サイト</a></p>
+
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+      </section>
+      
+      
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="http://github.com/netchira">netchira</a> can be found on <a href="http://github.com/netchira/netchira.github.io">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja_JP">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115020946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115020946-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1404104114391974",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>
+      GitHub Pages を作成する時のデバッグ作業の仕方 - @netchira
+    </title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>GitHub Pages を作成する時のデバッグ作業の仕方 | netchira.github.io</title>
+<meta property="og:title" content="GitHub Pages を作成する時のデバッグ作業の仕方" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="GitHub Pages を作成する時のデバッグ作業の仕方" />
+<meta property="og:description" content="GitHub Pages を作成する時のデバッグ作業の仕方" />
+<link rel="canonical" href="http://localhost:4000/blog/githubpages/JekyllDebug.html" />
+<meta property="og:url" content="http://localhost:4000/blog/githubpages/JekyllDebug.html" />
+<meta property="og:site_name" content="netchira.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"GitHub Pages を作成する時のデバッグ作業の仕方","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/githubpages/JekyllDebug.html","publisher":null,"image":null,"headline":"GitHub Pages を作成する時のデバッグ作業の仕方","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="http://github.com/netchira/netchira.github.io">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>netchira.github.io</h1>
+            <h2>ねっちらのエンジニアわっしょい</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <div id="no-downloads">
+          <span class="inner">
+          </span>
+        </div>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2 id="github-pages-を作成する時のデバッグ作業の仕方">GitHub Pages を作成する時のデバッグ作業の仕方</h2>
+
+<p>こんにちは、netchiraです。</p>
+
+<p>今回のテーマは「GitHub Pagesでブログを作成する時のデバッグ作業の仕方」です。</p>
+
+<p>「ブログをデバッグ」ってかなり変な言葉かもしれませんね。笑</p>
+
+<p>というのも、GitHub Pages &amp; Jekyll でwebページを作成できるので、
+色々と記事を書こうと思い始めたところ、
+「いちいち GitHub 上で Commit &amp; Push しないとWebページが見れない」のが
+とても面倒だなーと思うようになりました。</p>
+
+<p>特に、SEO対策について今なお勉強中なのですが、</p>
+<ul>
+  <li>jekyllの文法がわからん</li>
+  <li>jekyll-seo-tagってどうやって使うん？</li>
+  <li>実際にできたHTMLのソースを見て、「うん？思うようになっていない。。。」</li>
+</ul>
+
+<p>・・・といった壁にぶち当たっている訳です。</p>
+
+<p>jekyllで生成するwebページをローカル(自分のPC上)で生成できる方法があることは
+GithubPages本家のwebページを見てて、こういうのがあります。</p>
+
+<p><a href="https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/">Setting up your GitHub Pages site locally with Jekyll</a></p>
+
+<p>ここでは、Rubyをインストールして、ごちゃごちゃすればできる、と書いているのですが、
+かなりコストが高かったです。笑</p>
+
+<p>ここでは試行錯誤の末、最終的に成功した方法だけを記しておきます。</p>
+
+<p>以下、GitHub本家の[Setting up your GitHub Pages site locally with Jekyll]で紹介されている
+手順に従って記述していきます。</p>
+
+<p><strong>その前に1言だけ！！</strong></p>
+
+<p>下記のサイトは大変役に立ちます。よかったらここも軽く目を通してから、この先をお読みください。<br />
+<a href="http://blog.johannesmp.com/2017/02/13/fixing-jekyll-serve-on-windows/">Johannes Peter氏のブログ</a></p>
+<ol>
+  <li>Install all Jekyll Dependencies すべて</li>
+  <li>Get Jekyll Server Working<br />
+ Fix SSL “certificate verify failed”<br />
+ Fix “No repo name found”<br />
+ Fix “The GitHub API credentials you provided aren’t valid.”</li>
+</ol>
+
+<p><strong>では本題に移ります！！</strong></p>
+
+<h3 id="requirements">Requirements</h3>
+<ol>
+  <li><a href="https://rubyinstaller.org/downloads/">RubyInstaller for Windows</a>に行く。</li>
+  <li>
+    <p>RubyInstallers: Ruby 2.3.3 をダウンロードする。
+そしてインストールする。
+指定するオプションは次の2つ。
+Rubyの実行ファイルへ環境変数PATHを設定する
+.rbと.rbwファイルをRubyに関連付ける にチェックを入れてインストール
+(こちらは簡単ですね。)</p>
+  </li>
+  <li>
+    <p>DEVEROMENT KIT : For use with Ruby 2.0 to 2.3 をダウンロードする。
+ダウンロードしたファイルは、下記ディレクトリを作成して起き、ここに置く。
+C:\RubyDevKit</p>
+  </li>
+  <li>DEVEROMENT KIT はRubyコマンドライン上で初期設定する。Git Bashを起動して行う。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd C:\RubyDevKit
+$ ruby dk.rb init
+$ ruby dk.rb install
+</code></pre></div>    </div>
+  </li>
+  <li>Bundler をインストールする。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install bundler
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-1">Step 1</h3>
+<p>masterブランチでGithubPagesを作成していくので、何もしなくてよい。</p>
+
+<h3 id="step-2">Step 2</h3>
+<ol>
+  <li>ファイル名「Gemfile(拡張子：無し)」を作成する。
+(右クリック→新規作成→テキスト ドキュメントから.txtファイルを作成して、拡張子を消して保存)
+(※ファイルの拡張子が表示されない場合は、「拡張子の表示方法」とググってみてください。)</li>
+  <li>Gemfile の内容はたった2行だけ。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source 'https://rubygems.org'
+gem 'github-pages', group: :jekyll_plugins
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>※ちなみに、ビルド時に下記のようにワーニングが出ますが、
+下記1行は不要です。含めるとビルドできなくなります。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem 'wdm', '&gt;= 0.1.0' if Gem.win_platform?
+</code></pre></div></div>
+
+<ol>
+  <li>Jekyll の更新を行う。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle install
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-3">Step 3</h3>
+<p>何もしなくてよい。</p>
+
+<h3 id="step-4">Step 4</h3>
+<ol>
+  <li>いよいよJekyllでのwebページ生成です。初めにコマンドライン上で、
+{ユーザー名}.github.io のディレクトリまでcdします。</li>
+  <li>以下を実行します。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle exec jekyll serve
+</code></pre></div>    </div>
+  </li>
+  <li>しかし、うまくいきません。残念！
+そこで、下記のページを参考にしながら対策を実施していきます。
+    <ul>
+      <li>_config.ymlファイルに「repository: (ユーザー名)/(リポジトリ名)」を1行追加する。</li>
+      <li><a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem</a> からSSL証明書をダウンロードしてくる。</li>
+      <li>ダウンロードした<code class="highlighter-rouge">cacert.pem</code>を C:\RubyDevKit\SSLCert に置く。</li>
+      <li>その後、環境変数=SSL_CERT_FILE を追加し、値=さっきのディレクトリ を設定します。
+<a href="https://support.borndigital.co.jp/hc/ja/articles/115010667707-環境変数の追加する方法について-Windows10-">環境変数の編集方法(参考)</a></li>
+      <li>GitHub API 用の認証が必要となるため、アクセストークンを <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a> で取得する。</li>
+      <li>その後、環境変数=JEKYLL_GITHUB_TOKEN を追加し、値=(40文字の英数字の羅列) を設定します。</li>
+    </ul>
+  </li>
+  <li>一度、コマンドライン上で<code class="highlighter-rouge">exit</code>と打ち込み、Git Bash の画面を閉じます。(上記の作業でRubyが必要とする情報が更新されたので、一旦リセット。)</li>
+  <li>以下を再び実行します。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle exec jekyll serve
+</code></pre></div>    </div>
+    <p>ワーニング及びエラーが出なくなったと思います。</p>
+  </li>
+  <li>ブラウザで下記のように入力。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://127.0.0.1:4000
+</code></pre></div>    </div>
+    <p>すると、ここでwebページの出来映えが確認できます。</p>
+  </li>
+  <li><code class="highlighter-rouge">Ctrl + C</code> で ローカル上でのJekyllの動作を止めます。</li>
+</ol>
+
+<p>これで、いちいち Commit &amp; Push しなくても、webページの出来映え閣員ができる環境が構築できました。</p>
+
+<h3 id="以後のデバッグ作業では">以後のデバッグ作業では</h3>
+<ol>
+  <li>{ユーザー名}.github.io のディレクトリまでcdします。</li>
+  <li>コマンドライン上で以下を実行します。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle exec jekyll serve
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="ぼやき">ぼやき</h3>
+<p>今更なのですが、Jekyll のビルドは、生成するHTMLが10個にも満たないのに、
+8-10秒くらいかかります。意外と時間かかりますね。仕方ないか。</p>
+
+<p>あと、余談ですが、マークダウンで記述されたファイルをJekyllでHTML生成する場合は、
+paginationが使えないらしいです。使ってみたかったなあ・・・</p>
+
+<p><a href="https://jekyllrb.com/docs/pagination/">https://jekyllrb.com/docs/pagination/</a></p>
+
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+                
+          Webサイトをもっと手軽に作成したい方へ！
+          <a href="https://px.a8.net/svt/ejp?a8mat=2ZAKWE+5O7P9U+50+4SUKCH" target="_blank" rel="nofollow">
+          <img border="0" width="468" height="60" alt="" src="https://www23.a8.net/svt/bgt?aid=180212558343&wid=001&eno=01&mid=s00000000018029032000&mc=1"></a>
+          <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=2ZAKWE+5O7P9U+50+4SUKCH" alt="">
+
+         <a href="https://px.a8.net/svt/ejp?a8mat=2ZAHRX+5O7P9U+348+1U1TUP" target="_blank" rel="nofollow">
+         <img border="0" width="728" height="90" alt="" src="https://www28.a8.net/svt/bgt?aid=180208509343&wid=001&eno=01&mid=s00000000404011094000&mc=1"></a>
+         <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=2ZAHRX+5O7P9U+348+1U1TUP" alt="">
+      
+      
+      </section>
+      
+      
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="http://github.com/netchira">netchira</a> can be found on <a href="http://github.com/netchira/netchira.github.io">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

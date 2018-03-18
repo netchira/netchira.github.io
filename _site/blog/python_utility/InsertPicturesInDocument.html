@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja_JP">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115020946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115020946-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1404104114391974",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>
+      Pythonで手作業を無くせ！(第1回) - @netchira
+    </title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Pythonで手作業を無くせ！(第1回) | netchira.github.io</title>
+<meta property="og:title" content="Pythonで手作業を無くせ！(第1回)" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。" />
+<meta property="og:description" content="GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。" />
+<link rel="canonical" href="http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html" />
+<meta property="og:url" content="http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html" />
+<meta property="og:site_name" content="netchira.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html","publisher":null,"image":null,"headline":"Pythonで手作業を無くせ！(第1回)","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="http://github.com/netchira/netchira.github.io">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>netchira.github.io</h1>
+            <h2>ねっちらのエンジニアわっしょい</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <div id="no-downloads">
+          <span class="inner">
+          </span>
+        </div>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2 id="pythonで手作業を無くせ第1回">Pythonで手作業を無くせ！(第1回)</h2>
+<h3 id="microsoft-wordでの手作業を無くす">Microsoft Wordでの手作業を無くす</h3>
+
+<h3 id="前提条件">前提条件</h3>
+<p>Python 2.7 を使用
+開発環境として Anaconda および Spyder (3.2.6) を使用</p>
+
+<h3 id="処理内容">処理内容</h3>
+<p>こんなものを作りました。
+<img src="/blog/picture/InsertPicturesInDocument/main_window.PNG" alt="main_window" /></p>
+
+<p>やってることは、</p>
+<ul>
+  <li>画像ファイルの拡張子を選択する</li>
+  <li>ファイルを選択する</li>
+  <li>フォルダーを選択する</li>
+  <li>一番下のボタンをクリックすると、Wordファイルに画像を張り付けていく処理を行う</li>
+  <li>エラー時にメッセージ表示(少しだけ)</li>
+</ul>
+
+<p><img src="/blog/picture/InsertPicturesInDocument/open_file.PNG" alt="main_window" />
+<img src="/blog/picture/InsertPicturesInDocument/select_folder.PNG" alt="main_window" />
+<img src="/blog/picture/InsertPicturesInDocument/error_message.PNG" alt="main_window" /></p>
+
+<p>詳しくは下記ソースを見てください。</p>
+
+<h3 id="ソースコード">ソースコード</h3>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># -*- coding: utf-8 -*-</span>
+"""
+Created on Fri Dec 29 20:28:35 2017
+Spyderエディタ
+For Python ver 2.7
+@author: netchira
+"""
+import os
+import Tkinter      #GUIコントロール
+import ttk          #GUIコントロール(Combobox)
+import tkFileDialog #ファイル操作
+import tkMessageBox #メッセージボックス表示
+from docx import Document
+from docx.shared import Inches
+from glob import glob
+
+<span class="gh">#スクリプトの開始</span>
+print "Insert Pictures In Document Start"
+
+<span class="gh">#root定義</span>
+root = Tkinter.Tk()
+root.title(u"画像ファイル自動挿入スクリプト")
+root.geometry("600x150")
+
+<span class="gh">#root上のグローバル変数定義</span>
+g_PictureType =Tkinter.StringVar()
+g_PictureType.set('type')#変数の初期化
+g_DocumentFile =Tkinter.StringVar()
+g_DocumentFile.set('file_name')#変数の初期化
+g_PictFolderPath =Tkinter.StringVar()
+g_PictFolderPath.set('folder_name')#変数の初期化
+
+<span class="gh">#色の定義</span>
+BLACK = '#000000'
+RED = '#ff0000'
+PINK = '#ffaacc'
+
+<span class="gh">#挿入する画像のサイズ指定(横幅：width)</span>
+PICTURE_SIZE = Inches(4.00)
+
+"""
+ 呼び出し元：ボタン1
+ 関数の処理内容：Wordファイルを選択する
+"""
+def SelectDocFile(event):
+    global g_DocumentFile
+    #ファイルを選択する
+    fTyp = <span class="p">[</span><span class="nv">("docxファイル",".docx"),("docファイル",".doc"),("すべてのファイル",".*")</span><span class="p">]</span>
+    iDir = os.path.abspath(os.path.curdir)
+    #tkMessageBox.showinfo('Wordファイル選択','ファイルを選択してください。')
+    filepath = tkFileDialog.askopenfilename(filetypes = fTyp,initialdir = iDir)
+    g_DocumentFile.set(filepath)
+    Entry1.configure(textvariable = g_DocumentFile)
+
+"""
+ 呼び出し元：ボタン2
+ 関数の処理内容：画像ファイルが格納されているフォルダを選択する
+"""
+def SelectFolder(event):
+    global g_PictFolderPath
+    #フォルダを選択する
+    iDir = os.path.abspath(os.path.curdir)
+    #tkMessageBox.showinfo('フォルダ選択','画像ファイルが格納されているフォルダを選択してください。')
+    folderpath = tkFileDialog.askdirectory(initialdir = iDir)
+    g_PictFolderPath.set(folderpath)
+    Entry2.configure(textvariable = g_PictFolderPath)
+    
+"""
+ 呼び出し元：ボタン3
+ 関数の処理内容：Wordファイルに画像を挿入する
+"""
+def InsertPictureFiles(event):
+    global g_DocumentFile
+    global g_PictFolderPath
+    global g_PictureType
+    l_file   = g_DocumentFile.get()
+    l_folder = g_PictFolderPath.get()
+    l_type   = g_PictureType.get()
+    
+    #ファイルの所在の確認
+    l_flag1 = os.path.exists(l_file)
+    l_flag2 = os.path.exists(l_folder)
+    
+    if l_flag1 and l_flag2:
+        # Wordファイルを開く
+        #document = Document()　#docxファイルの新規作成
+        document = Document(l_file) #docxファイルの読み込み
+        
+        # 画像ファイルのみのリストを作成する
+        pict_path = l_folder + '/<span class="err">*</span>'
+        pict_path += l_type
+        picts = glob(pict_path)
+        
+        #docxファイルの編集処理
+        for pict in picts: 
+            #箇条書きの挿入
+            pict_name = GetFileName(pict)
+            document.add_paragraph(pict_name, style='ListBullet')
+         
+            #画像の挿入
+            document.add_picture(pict, width=PICTURE_SIZE)
+            
+            #改行
+            document.add_paragraph()
+            
+            #改ページ
+            #document.add_page_break()
+    
+        #新しくdocxファイルを保存
+        newdoc = l_folder + "<span class="se">\d</span>emo_new.docx"
+        document.save(newdoc)
+        
+        #スクリプト処理の成功
+        print "Insert Pictures Success!"
+        tkMessageBox.showinfo('Success', "Wordファイルに画像を挿入しました。")<span class="sb">
+
+    elif l_flag2:
+        #存在していなかったファイルの表示
+        dispmsg = "下記ファイルが存在していませんでした。再度、ファイルを選択してください。\n"
+        dispmsg += (l_file + "\n")
+        tkMessageBox.showinfo('Wordファイルが見つかりません', dispmsg)
+
+    elif l_flag1:
+        #存在していなかったファイルの表示
+        dispmsg = "選択したフォルダが存在していませんでした。再度、フォルダを選択してください。\n"
+        dispmsg += (l_folder + "\n")
+        tkMessageBox.showinfo('画像を格納したフォルダが見つかりません', dispmsg)
+    
+    else :
+        tkMessageBox.showinfo('スクリプトが実行できません', "ファイル名、フォルダを正しく指定してください。\n")
+
+
+</span><span class="gh">#ラベル1(textblock)を配置</span>
+dispmsg = u"Wordファイルと、画像ファイルが格納されたフォルダを選択してください。その後、画像挿入をクリックしてください。"
+Label1 = Tkinter.Label(text=dispmsg, foreground=BLACK, background=PINK)
+Label1.place(x=0, y=0)
+
+<span class="gh">#ラベル2(textblock)を配置</span>
+Label2 = Tkinter.Label(text=u'拡張子：', width=10, anchor=Tkinter.W)
+Label2.place(x=30, y=30)
+
+<span class="gh">#コンボボックス(combobox)を配置</span>
+Combobox= ttk.Combobox(width=10, textvariable=g_PictureType)
+Combobox.bind('<span class="nt">&lt;</span><span class="err">&lt;</span><span class="na">ComboboxSelected</span><span class="nt">&gt;</span>&gt;')
+Combobox<span class="p">[</span><span class="nv">'values'</span><span class="p">]</span>=('.png','.jpeg','.bmp')
+Combobox.set('.png')
+Combobox.place(x=90, y=30)
+
+<span class="gh">#ボタン1(button)を配置</span>
+Button1 = Tkinter.Button(width=10, text=u'ファイル選択')
+Button1.bind("<span class="nt">&lt;ButtonRelease-1&gt;</span>",SelectDocFile) #左クリックされると関数を呼び出すようにバインド
+Button1.place(x=0, y=60)
+    
+<span class="gh">#ボタン2(button)を配置</span>
+Button2 = Tkinter.Button(width=10, text=u'フォルダ指定')
+Button2.bind("<span class="nt">&lt;ButtonRelease-1&gt;</span>",SelectFolder) #左クリックされると関数を呼び出すようにバインド
+Button2.place(x=0, y=90)
+
+<span class="gh">#ボタン3(button)を配置</span>
+Button3 = Tkinter.Button(width=10, text=u'画像挿入')
+Button3.bind("<span class="nt">&lt;ButtonRelease-1&gt;</span>",InsertPictureFiles) #左クリックされると関数を呼び出すようにバインド
+Button3.place(x=0, y=120)
+    
+<span class="gh">#エントリー1(textbox)を配置</span>
+Entry1 = Tkinter.Entry(width=80, textvariable=g_DocumentFile)
+Entry1.place(x=90, y=60)
+    
+<span class="gh">#エントリー2(textbox)を配置</span>
+Entry2 = Tkinter.Entry(width=80, textvariable=g_PictFolderPath)
+Entry2.place(x=90, y=90)
+
+"""
+関数の処理内容：ファイルのフルパスから拡張子を除いたファイル名だけを返す
+"""
+def GetFileName(file_path):
+    split_str = file_path.split('<span class="se">\\</span>')
+    file_name_ext = split_str<span class="p">[</span><span class="nv">len(split_str) - 1</span><span class="p">]</span>
+    temp = file_name_ext.split(".")
+    file_name = temp<span class="p">[</span><span class="nv">0</span><span class="p">]</span> # 拡張子のないファイル名を取得
+    return file_name
+    
+<span class="gh">#mainloop</span>
+root.mainloop()
+
+</code></pre></div></div>
+
+<p>以上です。
+これで、何かの時にラクできるかも♪</p>
+
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+        
+        
+        東京でプログラマーへの転職するならGEEK JOB 〜今なら無料体験実施中！〜
+        <a href="//af.moshimo.com/af/c/click?a_id=945389&p_id=1431&pc_id=2500&pl_id=21538&url=https%3A%2F%2Fcamp.geekjob.jp%2F%3Futm_source%3Daffiliate%26utm_medium%3Ddisplay%26utm_content%3Dmoshimo-dis_camp%26utm_campaign%3Dcamp01" target="_blank" rel="nofollow"><img src="http://image.moshimo.com/af-img/0697/000000021538.png" style="border:none;"></a><img src="//i.moshimo.com/af/i/impression?a_id=945389&p_id=1431&pc_id=2500&pl_id=21538" width="1" height="1" style="border:none;">
+      </section>
+      
+      
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="http://github.com/netchira">netchira</a> can be found on <a href="http://github.com/netchira/netchira.github.io">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: toppage
 title: Welcome to my Top Page
+description: Welcome to my Top Page
 lang: ja_JP
 ---
 ## Welcome to my Top Page

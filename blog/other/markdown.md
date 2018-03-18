@@ -1,19 +1,12 @@
 ---
-layout: adv_book
-titel:  Pythonを始めてみよう！(第1回)
+layout: default
+title: サンプル
+description: サンプル
+lang: ja_JP
 ---
-## Pythonを始めてみよう！(第1回)
-### Anacondaを使ってみる
+## サンプルページ
 
-
-
-### 今回のゴール
-Pythonで開発が行える環境を用意する
-
-
-### 前提条件
-Anaconda をインストールした状態であること
-
+こんにちは、netchiraです。
 
 
 ```markdown
@@ -32,6 +25,7 @@ Syntax highlighted code block
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
+```
 
 
 
@@ -43,5 +37,8 @@ Syntax highlighted code block
 |カラム1|カラム2|
 |---|---|
 |abcd|ABCD|
+
+
+
 
 

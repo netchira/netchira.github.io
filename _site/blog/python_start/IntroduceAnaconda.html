@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja_JP">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115020946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115020946-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1404104114391974",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>
+      Pythonを始めてみよう！(第1回:Anacondaを使ってみる) - @netchira
+    </title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Pythonを始めてみよう！(第1回:Anacondaを使ってみる) | netchira.github.io</title>
+<meta property="og:title" content="Pythonを始めてみよう！(第1回:Anacondaを使ってみる)" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="Pythonの統合開発環境であるAnacondaを使ってみます。" />
+<meta property="og:description" content="Pythonの統合開発環境であるAnacondaを使ってみます。" />
+<link rel="canonical" href="http://localhost:4000/blog/python_start/IntroduceAnaconda.html" />
+<meta property="og:url" content="http://localhost:4000/blog/python_start/IntroduceAnaconda.html" />
+<meta property="og:site_name" content="netchira.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"Pythonの統合開発環境であるAnacondaを使ってみます。","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/python_start/IntroduceAnaconda.html","publisher":null,"image":null,"headline":"Pythonを始めてみよう！(第1回:Anacondaを使ってみる)","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="http://github.com/netchira/netchira.github.io">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>netchira.github.io</h1>
+            <h2>ねっちらのエンジニアわっしょい</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <div id="no-downloads">
+          <span class="inner">
+          </span>
+        </div>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2 id="pythonを始めてみよう第1回anacondaを使ってみる">Pythonを始めてみよう！(第1回:Anacondaを使ってみる)</h2>
+
+<p>以下のwebページから Anaconda をダウンロードできます。
+ここからPythonをはじめてみましょう。</p>
+
+<p><a href="https://www.anaconda.com/download/">Anaconda Download</a></p>
+
+<p>Pythonを始める上でまず初めに知っておくべきこと(個人的意見)をまとめてみました。</p>
+
+<ol>
+  <li>Anacondaで使うPythonのバージョンは、2.7 または 最新(3.x)のどちらかを選択すべし。</li>
+  <li>Python 2.x と Python 3.x で互換性がないと認識すべし。(微妙にライブラリ名が異なる。ソースコードをそのまま流用できることが少ない。)</li>
+  <li>Anaconda Navigator から、Spyderを起動し、ここでソースコードの実行・デバッグを行うべし。</li>
+  <li>必要なライブラリは、Anaconda Promptのpipでインストールすることができるが、Anaconda Navigatorで行うべし。(Anaconda Navigatorでは、インストールしているライブラリを確認できる。)</li>
+  <li>(Open Sourceであるせいか、)Anaconda Navigator, Spyder共に、起動にすごく時間がかかる。じっくり待つべし。</li>
+  <li>Pythonの複数のバージョンを使用したい場合、「仮想環境」をつくると両バージョンをAnacondaで使えるようになる。</li>
+  <li>Pythonはとても人気のあるプログラミング言語なので、ググってみると知識がたくさんある。しかし、その分、間違った知識や、自分の環境には適さない情報なども混同しがち。</li>
+</ol>
+
+<h3 id="python豊富なライブラリ群">Python：豊富なライブラリ群</h3>
+<p>まだ私もPythonを勉強し始めたところなのですが、<br />
+numpy<br />
+scipy<br />
+matplotlib<br />
+pandas<br />
+この辺りのライブラリはコーディングするうえで有効かと思われます。
+numpyは行列を用いた演算を高速で処理できるそうです。(まだ自分は使いこなせない)</p>
+
+<p>まあ全てを理解しないとPythonは使えない、というわけではないと思います。
+Python始めてみると、色んなことができることが分かってきて、けっこう楽しくなってきますよ。</p>
+
+<p>また、PythonでGUIアプリケーションを作りたいならこの辺りが利用可能かと思います。参考情報です。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Python2.7系</th>
+      <th>Python3.x系</th>
+      <th>ライブラリの概要</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tkinter</td>
+      <td>tkinter</td>
+      <td>GUIコントロール</td>
+    </tr>
+    <tr>
+      <td>ttk</td>
+      <td>tkinter.ttk</td>
+      <td>GUIコントロール(Comboboxが使える)</td>
+    </tr>
+    <tr>
+      <td>tkFileDialog</td>
+      <td>tkinter.filedialog</td>
+      <td>ファイル操作</td>
+    </tr>
+    <tr>
+      <td>tkMessageBox</td>
+      <td>tkinter.messagebox</td>
+      <td>メッセージボックス表示</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>ちなみに、Anaconda/Spyderはこんな感じです。</p>
+
+<p>Anaconda Navigator</p>
+
+<p>Anaconda Prompt</p>
+
+<p>Spyder</p>
+
+<p>さあ、皆さんもPythonをはじめてみませんか！？</p>
+
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+        
+        
+        東京でプログラマーへの転職するならGEEK JOB 〜今なら無料体験実施中！〜
+        <a href="//af.moshimo.com/af/c/click?a_id=945389&p_id=1431&pc_id=2500&pl_id=21538&url=https%3A%2F%2Fcamp.geekjob.jp%2F%3Futm_source%3Daffiliate%26utm_medium%3Ddisplay%26utm_content%3Dmoshimo-dis_camp%26utm_campaign%3Dcamp01" target="_blank" rel="nofollow"><img src="http://image.moshimo.com/af-img/0697/000000021538.png" style="border:none;"></a><img src="//i.moshimo.com/af/i/impression?a_id=945389&p_id=1431&pc_id=2500&pl_id=21538" width="1" height="1" style="border:none;">
+      </section>
+      
+      
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="http://github.com/netchira">netchira</a> can be found on <a href="http://github.com/netchira/netchira.github.io">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja_JP">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115020946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-115020946-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1404104114391974",
+        enable_page_level_ads: true
+      });
+    </script>
+    <title>
+      GitHub Pages でのSEO対策に - @netchira
+    </title>
+  <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>GitHub Pages でのSEO対策に | netchira.github.io</title>
+<meta property="og:title" content="GitHub Pages でのSEO対策に" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="GitHub Pages でのSEO対策について考察します" />
+<meta property="og:description" content="GitHub Pages でのSEO対策について考察します" />
+<link rel="canonical" href="http://localhost:4000/blog/githubpages/SEOsono2.html" />
+<meta property="og:url" content="http://localhost:4000/blog/githubpages/SEOsono2.html" />
+<meta property="og:site_name" content="netchira.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"GitHub Pages でのSEO対策について考察します","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/githubpages/SEOsono2.html","publisher":null,"image":null,"headline":"GitHub Pages でのSEO対策に","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="http://github.com/netchira/netchira.github.io">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>netchira.github.io</h1>
+            <h2>ねっちらのエンジニアわっしょい</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <div id="no-downloads">
+          <span class="inner">
+          </span>
+        </div>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2 id="github-pages-でのseo対策について">GitHub Pages でのSEO対策について</h2>
+
+<p>こんにちは、netchira です。</p>
+
+<p>今回はGitHub Pages で作成したwebページのSEO対策について、何を実践していけばいいか個人的見解を紹介していきます。</p>
+
+<ul>
+  <li>GitHub Pagesプラグインjekyll-seo-tagを使用</li>
+  <li>とりあえず1ヶ月くらい待ってみる</li>
+</ul>
+
+<h3 id="前提条件">前提条件</h3>
+<p>Google Search Console に自分のwebページを登録していること</p>
+
+<h3 id="参考資料">参考資料</h3>
+<p><a href="https://support.google.com/webmasters/answer/7451184?hl=ja&amp;ref_topic=3309469">ヘルプ: 検索エンジン最適化（SEO）スターター ガイド</a></p>
+
+<p>※以下、SEOスターターガイドと呼ぶこととします。</p>
+
+<h3 id="プラグインjekyll-seo-tagでできること">プラグインjekyll-seo-tagでできること</h3>
+
+<p>このプラグインを’_config.yml’に記述しておくと、Googleが公開している「SEOスターターガイド」に記載されている以下のことができるようになります。</p>
+
+<ol>
+  <li>ページタイトル <code class="highlighter-rouge">&lt;title&gt;</code>タグを指定する</li>
+  <li>ページの概要 descriptionメタタグを指定する</li>
+</ol>
+
+<h3 id="seo対策その1-固有の正確なページタイトルを付ける">SEO対策その1: 固有の正確なページタイトルを付ける</h3>
+
+<p>SEOスターターガイドには以下のような記述があります。</p>
+
+<p><code class="highlighter-rouge"> &lt;title&gt;タグはユーザーと検索エンジンの両方にページの内容を伝えるものです。&lt;title&gt;タグはHTMLドキュメントの &lt;head&gt;要素内に配置する必要があります。サイトの各ページに固有のタイトルを付けてください。</code></p>
+
+<p>まだ私も100%活用できている自信はありませんが、この<code class="highlighter-rouge">&lt;title&gt;</code>タグがGoogle検索でヒットする上で重要な要素の一つである、ということです。</p>
+
+<p>オリジナリティの高い、且つ、内容がすぐに分かる<code class="highlighter-rouge">&lt;title&gt;</code>をつくって、Google検索に自分のwebページがヒットするようになることを目指したいものです。</p>
+
+<h3 id="seo対策その2-description-メタタグを使用する">SEO対策その2: description メタタグを使用する</h3>
+
+<p>再び引用です。</p>
+
+<p><code class="highlighter-rouge">ページの description メタタグは Google や他の検索エンジンにページ内容の要約を伝えます。ページのタイトルが数語の単語やフレーズであるのに対し、ページの description メタタグには 1、2 文のセンテンスや短いパラグラフを記述します。</code></p>
+
+<p>こちらも、SEO対策に欠かせない要素である、とのこと。
+内容が分かりやすい</p>
+
+<p>ちなみに、これらの内容を書くのはマークダウンファイル(拡張子: .md, .markdown)の先頭です。</p>
+
+<p>こんな感じで書きます。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+title: GitHub Pages でのSEO対策に
+description: GitHub Pages でのSEO対策について考察します
+lang: ja_JP
+---
+## GitHub Pages でのSEO対策について
+
+こんにちは、netchira です。
+
+(以下、略)
+</code></pre></div></div>
+
+<h3 id="とりあえず待ってみる">とりあえず待ってみる</h3>
+<p>さて、いくつか方法を紹介してみましたが、「どうしても急がないといけない人」を除いて、しばらく待てる人は、ちょっと待ってみるのも良い方法かと思います。</p>
+
+<p>SEO対策でググると色んな情報が出てきますし、なんだか迷ってしまいますよね。</p>
+
+<p>なので、何かしら自分で試してみたのなら、まずは2,3日待ってみて、1,2週間待ってみて、、、さすがに1ヶ月たてば効果が出始めてもいいとは思いますが、そういう「気長さ」があっても良いのではないでしょうか。</p>
+
+<p>以上です。</p>
+
+<p>参考になれば幸いです。</p>
+
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+                
+          Webサイトをもっと手軽に作成したい方へ！
+          <a href="https://px.a8.net/svt/ejp?a8mat=2ZAKWE+5O7P9U+50+4SUKCH" target="_blank" rel="nofollow">
+          <img border="0" width="468" height="60" alt="" src="https://www23.a8.net/svt/bgt?aid=180212558343&wid=001&eno=01&mid=s00000000018029032000&mc=1"></a>
+          <img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=2ZAKWE+5O7P9U+50+4SUKCH" alt="">
+
+         <a href="https://px.a8.net/svt/ejp?a8mat=2ZAHRX+5O7P9U+348+1U1TUP" target="_blank" rel="nofollow">
+         <img border="0" width="728" height="90" alt="" src="https://www28.a8.net/svt/bgt?aid=180208509343&wid=001&eno=01&mid=s00000000404011094000&mc=1"></a>
+         <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=2ZAHRX+5O7P9U+348+1U1TUP" alt="">
+      
+      
+      </section>
+      
+      
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="http://github.com/netchira">netchira</a> can be found on <a href="http://github.com/netchira/netchira.github.io">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

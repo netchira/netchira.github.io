@@ -74,5 +74,3 @@ https://netchira.github.io/sitemap.xml
 
 
 以上です。
-
-参考になれば幸いです。

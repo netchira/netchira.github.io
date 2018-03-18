@@ -1,10 +1,10 @@
 ---
 layout: adv_webdesign
-title: GitHub Pages 地味に始めにくい説
-description: GitHub Pages 地味に始めにくい説
+title: GitHub Pages を使って頑張ってブログを始めてみた
+description: GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。
 lang: ja_JP
 ---
-## GitHub Pages 地味に始めにくい説
+## GitHub Pages を使って頑張ってブログを始めてみた
 
 こんにちは、netchiraです。
 
@@ -71,7 +71,7 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 この記事の先頭からEnabling GitHub Pages to publish your site from master or gh-pages の 「4」まで進めれば良いです。<br>
 やってることは結構簡単です。
 3. あとは、先ほど編集したレポジトリ({ユーザー名}.github.io)をCommit & Pushするだけです。<br>
-![参考用の画像](picture/GitHub-picture-001.PNG)
+![GitHub 参考用の画像](../picture/GitHub-picture-001.PNG)
 
 以上でWebページの公開ができました。
 
@@ -83,5 +83,5 @@ Jekyllは「マークダウン(拡張子：.md)」ファイルを変換して
 次回からはPythonで作った便利ツールの公開・紹介をしていこうと思います。
 
 でも、地味にGitHub Pages の始め方が分かりにくかったので、
-もう少しGitHubの勉強をして、勉強メモを残していくのもいいかもなあ。
+もう少しGitHub Pagesの勉強をして、勉強メモを残していくのもいいかもなあ。
 
