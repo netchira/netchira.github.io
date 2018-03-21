@@ -1,7 +1,7 @@
 ---
 layout: toppage
 title: Welcome to my Top Page
-description: Welcome to my Top Page
+description: 何かに役立ちそうなPythonスクリプトをGitHub Pagesで公開しています。その他、いろいろ情報発信していきます。
 lang: ja_JP
 ---
 ## Welcome to my Top Page
@@ -9,24 +9,26 @@ lang: ja_JP
 - netchira
 - [GitHub(netchira)](https://github.com/netchira/)
 
+### What I’m using
+Markdown: {{ site.markdown }}
 
-markdown: {{ site.markdown }}
-
-highlighter: {{ site.highlighter }}
+Highlighter: {{ site.highlighter }}
 
 
 ### 勉強中・開発中
-- Python 2.7 での便利ツール
-- Python 2.7 での画像処理ツール
-- Python 3.x でのビットコイン自動売買システム(既に大敗.あまり触れないことにします.)
-- Arduino unoでの電子工作
-- GitHub & Jekyll
+- GitHub Pages & Jekyllによるブログ運営
+- Python 2.7 での便利ツール開発
+- Python 2.7 での画像処理ツール開発
+- Python 3.x でのビットコイン自動売買システム開発
+- ディープラーニング(LTSM)
+- Arduino uno(液晶に何か映したい)
+- Unity (最近興味あり‼︎)
 
 
 ### 本リポジトリの運営について
-このwebページでは、GitHub Pagesを使ってブログを綴っていきます。
-今勉強しているものの中で技術的にハマった箇所の備忘録です。
-同じように悩んでいる人がいたら、あくまで参考としてお読みください。
+このwebページでは、主にPythonで書いたスクリプトを公開し、その概要などをGitHub Pagesを使って発信していきます。
+ですが、つまるところ今自分が勉強しているものの中で技術的にハマった箇所の備忘録です。
+同じように悩んでいる人がいたら、参考としてお読みください。
 一助となれば幸いです。
 
 
