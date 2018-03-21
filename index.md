@@ -10,9 +10,9 @@ lang: ja_JP
 - [GitHub(netchira)](https://github.com/netchira/)
 
 ### What I’m using
-Markdown: {{ site.markdown }}
+- Markdown: {{ site.markdown }}
 
-Highlighter: {{ site.highlighter }}
+- Highlighter: {{ site.highlighter }}
 
 
 ### 勉強中・開発中
