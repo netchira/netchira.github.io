@@ -17,5 +17,5 @@ sitemap:
  lastmod: 2018-03-24
  priority: 1.0
  changefreq: weekly
- exclude: "/blog/dairy_March2018.html"
+ exclude: "/dairy_March2018.html"
  
