@@ -12,9 +12,3 @@ plugins:
  - jekyll-seo-tag
  - jekyll-sitemap
  - jekyll-feed
-
-sitemap: 
- lastmod: 2018-03-24
- priority: 1.0
- changefreq: weekly
- exclude: "https://netchira.github.io/blog/dairy_March2018.html"
