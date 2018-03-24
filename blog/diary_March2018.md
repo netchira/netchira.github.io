@@ -3,6 +3,7 @@ layout: default
 title: 日記
 description: 非公開日記
 lang: ja_JP
+exclude: yes
 ---
 ## てすと
 ### 20180324
