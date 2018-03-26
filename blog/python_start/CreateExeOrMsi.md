@@ -124,7 +124,11 @@ python setup_msi.py bdist_msi
 これは一般的ではないようです。setup.pyと呼ぶべきなのだとか。。。
 (自分勝手なファイル名にしてます。スミマセン。)
 
-### 余談その2：アイコンファイル(.ico)作成方法
+### 余談その3：アイコンファイル(.ico)作成方法
 ググったら一発なのですが、便利なサイトがあったので紹介します。
 
 [.icoファイル生成サイト](https://ao-system.net/alphaicon/)
+
+### 参考URL
+[cx_Freeze公式サイト](http://cx-freeze.readthedocs.io/en/latest/distutils.html)
+
