@@ -59,9 +59,12 @@ options = {
     'bdist_msi': bdist_msi_options
 }
 
+
 # exe にしたい python ファイルを指定
-exe = Executable(script="CompareTxt.py",
-                 targetName="CompareTxt.exe",
+script = "CompareTxt.py"
+targetName = "CompareTxt.exe"
+exe = Executable(script=script,
+                 targetName=targetName,
                  base=base,
                  icon=icon
                  )

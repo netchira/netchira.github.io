@@ -1,5 +1,5 @@
 ---
-layout: adv_book
+layout: adv_job_python
 title: Pythonで手作業を無くせ！(第1回:Wordに画像ファイルを自動挿入していく)
 description: Microsoft Word ドキュメントに画像を自動で挿入していくスクリプトを作成しました。
 lang: ja_JP

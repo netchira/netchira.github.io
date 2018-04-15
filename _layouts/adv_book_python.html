@@ -4,8 +4,9 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640">
-    <meta name="google-site-verification" content="nOhzKhHvS3xHQE1s9dfvrH-cMyWLRWlBIomf0E5M6lA" />
-    
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen">
     <link rel="stylesheet" href="{{ '/assets/css/mobile.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="{{ '/assets/css/non-screen.css' | relative_url }}" media="handheld, only screen and (max-device-width:640px)">
@@ -73,12 +74,15 @@
 
       <section id="main_content">
         {{ content }}
-        <h3>ページ一覧</h3>
-        {% for html_page in site.html_pages %}
-            {% if  html_page.title != 'secret diary' %}
-                <li><a href="{{ html_page.url }}">{{ html_page.title }}</a></li>
-            {% endif %}
-        {% endfor %}
+        
+        <h3>Top Page へ戻る</h3>
+        <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+        
+        <h3>おまけ</h3>
+        Pythonをはじめたい方へ！<br>
+        <a href="//af.moshimo.com/af/c/click?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2F%25E5%2588%259D%25E3%2582%2581%25E3%2581%25A6%25E3%2581%25AEPython-%25E7%25AC%25AC3%25E7%2589%2588-Mark-Lutz%2Fdp%2F4873113938" target="_blank" rel="nofollow"><img style="border: medium; border-image: none;" alt="" src="https://images-fe.ssl-images-amazon.com/images/I/51NEcEa4PiL._SL160_.jpg" /></a><img width="1" height="1" style="border: 0px; border-image: none;" alt="" src="//i.moshimo.com/af/i/impression?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" />
+        <a href="//af.moshimo.com/af/c/click?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2FPython%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2583%2588%25E3%2583%2596%25E3%2583%2583%25E3%2582%25AF-%25E5%25A2%2597%25E8%25A3%259C%25E6%2594%25B9%25E8%25A8%2582%25E7%2589%2588-%25E8%25BE%25BB-%25E7%259C%259F%25E5%2590%25BE%2Fdp%2F4774196436" target="_blank" rel="nofollow"><img style="border: medium; border-image: none;" alt="" src="https://images-fe.ssl-images-amazon.com/images/I/51fE%2BEY9yuL._SL160_.jpg" /></a><img width="1" height="1" style="border: 0px; border-image: none;" alt="" src="//i.moshimo.com/af/i/impression?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" />
+        <a href="//af.moshimo.com/af/c/click?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2F%25E7%258F%25BE%25E5%25A0%25B4%25E3%2581%25A7%25E3%2581%2599%25E3%2581%2590%25E3%2581%25AB%25E4%25BD%25BF%25E3%2581%2588%25E3%2582%258B-Python%25E3%2583%2597%25E3%2583%25AD%25E3%2582%25B0%25E3%2583%25A9%25E3%2583%259F%25E3%2583%25B3%25E3%2582%25B0%25E9%2580%2586%25E5%25BC%2595%25E3%2581%258D%25E5%25A4%25A7%25E5%2585%25A8-313%25E3%2581%25AE%25E6%25A5%25B5%25E6%2584%258F-%25E9%2587%2591%25E5%259F%258E%25E4%25BF%258A%25E5%2593%2589%2Fdp%2F4798053635" target="_blank" rel="nofollow"><img style="border: medium; border-image: none;" alt="" src="https://images-fe.ssl-images-amazon.com/images/I/514hd3voGZL._SL160_.jpg" /></a><img width="1" height="1" style="border: 0px; border-image: none;" alt="" src="//i.moshimo.com/af/i/impression?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" />
       </section>
       
       

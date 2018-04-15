@@ -4,9 +4,10 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640">
-    <meta name="google-site-verification" content="nOhzKhHvS3xHQE1s9dfvrH-cMyWLRWlBIomf0E5M6lA" />
-    
-    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
+    <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=586fded05b2463f491d7d6e861fc9e9e5078adb8" media="screen">
     <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
 
@@ -114,10 +115,12 @@ cx_Freeze(64bit, Python 2.7)を使用</p>
 
 <p>留意点：PCにインストールしているPythonが32bit/64bitのどちらかによって、インストールするpy2exeのバージョンが決まるそうです。</p>
 
-<p>さて、次にやることは、exeを作るためのsetup.pyの作成です。
-私は以下のようなsetup.pyを書きました。</p>
+<p>さて、次にやることは、exeを作るためのセットアップファイル(.py)の作成です。
+一般的には’setup.py’というファイル名で作成します。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from distutils.core import setup
+<p>私は以下のようなsetup_exe.pyを書きました。</p>
+
+<pre><code class="language-setup_exe.py">from distutils.core import setup
 import py2exe
 
 script = 'CompareTxt.py'
@@ -136,21 +139,35 @@ setup(
     ],
     zipfile = None,
 )
-</code></pre></div></div>
-<p>このsetup.pyは、今回exe化したいpythonファイル(CompareTxt.py)と同じ場所に置きます。</p>
+</code></pre>
 
-<p>なお、色んな方がsetup.pyを書いているので、ググってみると参考になると思います。</p>
+<p>このsetup_exe.pyは、今回exe化したいpythonファイル(CompareTxt.py)と同じ場所に置きます。</p>
 
-<p>さて、ここまでくると、ようやくexeファイル生成が実行できるようになります。</p>
+<p>なお、色んな方がセットアップファイル(setup.py)を書いているので、ググってみると参考になると思います。</p>
 
-<p>Anaconda コマンドプロンプトでexeファイルにしたいpyファイルと、setup.pyを格納しているフォルダまでcdしていきます。
-次に以下を実行します。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup.py py2exe
-</code></pre></div></div>
-<p>すると、先ほどcdした場所に/distというフォルダが出来て、その中に、見事exeファイルができています！やったね！</p>
+<p>さて、ここまでくると、ようやくexeファイル生成が実行できるようになります。
+以下の2つの手順で完了です。</p>
+
+<ol>
+  <li>Anaconda Prompt で’exeファイルにしたいpyファイル’および’setup_exe.py’が格納されているフォルダまでcd(change directory)していきます。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd HogeHogeHoge/HogaHogaHoga
+</code></pre></div>    </div>
+  </li>
+  <li>次に以下を実行します。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python setup_exe.py py2exe
+</code></pre></div>    </div>
+    <p>⇒すると、先ほどcdした場所に/distというフォルダが出来て、その中に、見事exeファイルができています！やったね！</p>
+  </li>
+</ol>
 
 <h3 id="余談その1dllのしがらみ">余談その1:dllのしがらみ</h3>
 <p>以前、生成したexeファイルだけを別のPCで実行しようとしたのですが、アプリケーション実行時に必要なdllがないと動作できないようで、「exeファイルにしたいpyファイルでimportしているライブラリ」のdllが重要っぽいです。つまり、/distフォルダごと別PCに移さないと実行できません、ということでした。</p>
+
+<h3 id="余談その2optionについて">余談その2:optionについて</h3>
+<p>py2exeのoptionって何を表しているのでしょう。
+答えは以下に記載されています。</p>
+
+<p><a href="http://www.py2exe.org/index.cgi/ListOfOptions">py2exe</a></p>
 
 <h3 id="windowで動作するインストーラの作り方">Windowで動作するインストーラの作り方</h3>
 <p>cx_Freezeを使い、msiファイルの生成を行います。</p>
@@ -159,9 +176,9 @@ setup(
 
 <p><a href="https://ja.osdn.net/projects/sfnet_cx-freeze/">cx_Freezeダウンロード先</a></p>
 
-<p>次にやることは、msiを作るためのsetup.pyの作成です。
+<p>次にやることは、msiを作るためのセットアップファイル(.py)の作成です。
 先ほどと区別するため、setup_msi.pyというファイル名にします。
-こちらは、setup.pyに比べてソースコードが長くなっているので、
+こちらは、setup_exe.pyに比べてソースコードが長くなっているので、
 詳しくはGitHub上の私のリポジトリを参照してください。</p>
 
 <p><a href="https://github.com/netchira/netchira.github.io/tree/master/python">GitHub/netchira/python</a>
@@ -181,14 +198,24 @@ setup(
 これは一般的ではないようです。setup.pyと呼ぶべきなのだとか。。。
 (自分勝手なファイル名にしてます。スミマセン。)</p>
 
-<h3 id="余談その2アイコンファイルico作成方法">余談その2：アイコンファイル(.ico)作成方法</h3>
+<h3 id="余談その3アイコンファイルico作成方法">余談その3：アイコンファイル(.ico)作成方法</h3>
 <p>ググったら一発なのですが、便利なサイトがあったので紹介します。</p>
 
 <p><a href="https://ao-system.net/alphaicon/">.icoファイル生成サイト</a></p>
 
+<h3 id="参考url">参考URL</h3>
+<p><a href="http://cx-freeze.readthedocs.io/en/latest/distutils.html">cx_Freeze公式サイト</a></p>
+
+
         
         <h3>Top Page へ戻る</h3>
         <a href="https://netchira.github.io/">Welcome to my Top Page</a>
+        
+        <h3>おまけ</h3>
+        Pythonをはじめたい方へ！<br>
+        <a href="//af.moshimo.com/af/c/click?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2F%25E5%2588%259D%25E3%2582%2581%25E3%2581%25A6%25E3%2581%25AEPython-%25E7%25AC%25AC3%25E7%2589%2588-Mark-Lutz%2Fdp%2F4873113938" target="_blank" rel="nofollow"><img style="border: medium; border-image: none;" alt="" src="https://images-fe.ssl-images-amazon.com/images/I/51NEcEa4PiL._SL75_.jpg" /><br />初めてのPython 第3版</a><img width="1" height="1" style="border: 0px; border-image: none;" alt="" src="//i.moshimo.com/af/i/impression?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" />
+        <a href="//af.moshimo.com/af/c/click?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2FPython%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2583%2588%25E3%2583%2596%25E3%2583%2583%25E3%2582%25AF-%25E5%25A2%2597%25E8%25A3%259C%25E6%2594%25B9%25E8%25A8%2582%25E7%2589%2588-%25E8%25BE%25BB-%25E7%259C%259F%25E5%2590%25BE%2Fdp%2F4774196436" target="_blank" rel="nofollow"><img style="border: medium; border-image: none;" alt="" src="https://images-fe.ssl-images-amazon.com/images/I/51fE%2BEY9yuL._SL75_.jpg" /><br />Pythonスタートブック [増補改訂版]</a><img width="1" height="1" style="border: 0px; border-image: none;" alt="" src="//i.moshimo.com/af/i/impression?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" />
+        <a href="//af.moshimo.com/af/c/click?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2F%25E3%2581%259F%25E3%2581%25A3%25E3%2581%259F1%25E6%2597%25A5%25E3%2581%25A7%25E5%259F%25BA%25E6%259C%25AC%25E3%2581%258C%25E8%25BA%25AB%25E3%2581%25AB%25E4%25BB%2598%25E3%2581%258F-Python%25E8%25B6%2585%25E5%2585%25A5%25E9%2596%2580-%25E4%25BC%258A%25E8%2597%25A4-%25E8%25A3%2595%25E4%25B8%2580%2Fdp%2F4774191124" target="_blank" rel="nofollow"><img style="border: medium; border-image: none;" alt="" src="https://images-fe.ssl-images-amazon.com/images/I/51Up1y4c8zL._SL75_.jpg" /><br />たった1日で基本が身に付く!  Python超入門</a><img width="1" height="1" style="border: 0px; border-image: none;" alt="" src="//i.moshimo.com/af/i/impression?a_id=939438&amp;p_id=170&amp;pc_id=185&amp;pl_id=4062" />
       </section>
       
       

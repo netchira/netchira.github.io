@@ -1,5 +1,5 @@
 ---
-layout: adv_book
+layout: adv_book_python
 titel:  Pythonを始めてみよう！(第1回:Anacondaを使ってみる)
 description: Pythonの統合開発環境であるAnacondaを使ってみます。
 lang: ja_JP

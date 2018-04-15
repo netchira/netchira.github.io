@@ -1,5 +1,5 @@
 ---
-layout: adv_webdesign
+layout: adv_book_html
 title: GitHub Pages を作成する時のデバッグ作業の仕方
 description: GitHub Pages を作成する時のデバッグ作業の仕方
 lang: ja_JP

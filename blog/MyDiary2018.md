@@ -1,11 +1,10 @@
 ---
 layout: default
-title: 日記
-description: 非公開日記
+title: secret diary
+description: 秘密の日記
 lang: ja_JP
-exclude: yes
 ---
-## 非公開日記
+## 秘密の日記
 ### 20180324
 午前11時、カフェベローチェでコーヒーを飲みながら読書。1時間30分ほど滞在。
 夜、私が所属している音楽団体でずっと面倒を見ていた高校3年生の子から

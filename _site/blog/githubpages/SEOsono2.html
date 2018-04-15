@@ -7,7 +7,7 @@
     <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
     <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/style.css?v=586fded05b2463f491d7d6e861fc9e9e5078adb8" media="screen">
     <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
 
@@ -35,11 +35,11 @@
       });
     </script>
     <title>
-      GitHub Pages でのSEO対策に - @netchira
+      GitHub Pages でのSEO対策について - @netchira
     </title>
   <!-- Begin Jekyll SEO tag v2.3.0 -->
-<title>GitHub Pages でのSEO対策に | netchira.github.io</title>
-<meta property="og:title" content="GitHub Pages でのSEO対策に" />
+<title>GitHub Pages でのSEO対策について | netchira.github.io</title>
+<meta property="og:title" content="GitHub Pages でのSEO対策について" />
 <meta property="og:locale" content="ja_JP" />
 <meta name="description" content="GitHub Pages でのSEO対策について考察します" />
 <meta property="og:description" content="GitHub Pages でのSEO対策について考察します" />
@@ -47,7 +47,7 @@
 <meta property="og:url" content="http://localhost:4000/blog/githubpages/SEOsono2.html" />
 <meta property="og:site_name" content="netchira.github.io" />
 <script type="application/ld+json">
-{"name":null,"description":"GitHub Pages でのSEO対策について考察します","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/githubpages/SEOsono2.html","publisher":null,"image":null,"headline":"GitHub Pages でのSEO対策に","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+{"name":null,"description":"GitHub Pages でのSEO対策について考察します","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/githubpages/SEOsono2.html","publisher":null,"image":null,"headline":"GitHub Pages でのSEO対策について","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -124,15 +124,15 @@
 <p><code class="highlighter-rouge">ページの description メタタグは Google や他の検索エンジンにページ内容の要約を伝えます。ページのタイトルが数語の単語やフレーズであるのに対し、ページの description メタタグには 1、2 文のセンテンスや短いパラグラフを記述します。</code></p>
 
 <p>こちらも、SEO対策に欠かせない要素である、とのこと。
-内容が分かりやすい</p>
+内容が分かりやすいdescriptionメタタグをつくりたいものです。</p>
 
 <p>ちなみに、これらの内容を書くのはマークダウンファイル(拡張子: .md, .markdown)の先頭です。</p>
 
 <p>こんな感じで書きます。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<pre><code class="language-SEOsono2.md">---
 layout: default
-title: GitHub Pages でのSEO対策に
+title: GitHub Pages でのSEO対策について
 description: GitHub Pages でのSEO対策について考察します
 lang: ja_JP
 ---
@@ -141,14 +141,21 @@ lang: ja_JP
 こんにちは、netchira です。
 
 (以下、略)
-</code></pre></div></div>
+</code></pre>
 
-<h3 id="とりあえず待ってみる">とりあえず待ってみる</h3>
+<p>〜補足〜
+<code class="highlighter-rouge">layout: default</code>とある箇所では、mdファイルをhtmlに変換する際の「テンプレート」を指定しています。(_layoutフォルダ直下のhtmlファイルがそれに該当します。)</p>
+
+<h3 id="あとはとりあえず日にちが経過するのを待ってみる">あとは、とりあえず日にちが経過するのを待ってみる</h3>
 <p>さて、いくつか方法を紹介してみましたが、「どうしても急がないといけない人」を除いて、しばらく待てる人は、ちょっと待ってみるのも良い方法かと思います。</p>
 
-<p>SEO対策でググると色んな情報が出てきますし、なんだか迷ってしまいますよね。</p>
+<p>最近、GitHub Pages用のリポジトリのフォルダ構成を変えたのでwebページのURLが変わったんですが、Google Search ConsoleやGoogle Analyticsの設定を変えたりテストしたり色々やってたんですが、結局2〜3週間くらい経ってみて「ふと気付いた時」に、Google検索から自分のブログにヒットするようになりました。クロールされるのには、このくらいの期間が必要になるんですね。</p>
 
-<p>なので、何かしら自分で試してみたのなら、まずは2,3日待ってみて、1,2週間待ってみて、、、さすがに1ヶ月たてば効果が出始めてもいいとは思いますが、そういう「気長さ」があっても良いのではないでしょうか。</p>
+<p>(SEO対策でググると色んな情報が出てきますし、なんだか迷ってしまいますよね。)</p>
+
+<p>なので、何かしら自分で試してみたのなら、約1ヶ月くらい待ってみて、効果が出ているかどうかを観察してみてはいかがでしょうか？</p>
+
+<p>そういう「気長さ」があっても良いのではないでしょうか。。。</p>
 
 <p>以上です。</p>
 

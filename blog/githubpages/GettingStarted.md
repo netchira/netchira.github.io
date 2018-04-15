@@ -1,5 +1,5 @@
 ---
-layout: adv_webdesign
+layout: adv_book_html
 title: GitHub Pages を使って頑張ってブログを始めてみた
 description: GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。
 lang: ja_JP

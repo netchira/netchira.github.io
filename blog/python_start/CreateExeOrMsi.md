@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: adv_book_python
 titel:  Pythonを始めてみよう！(第2回:exeファイル・msiファイルを生成する)
 description: Pythonで作成したアプリケーションをWindows上で実行できるようにします。
 lang: ja_JP

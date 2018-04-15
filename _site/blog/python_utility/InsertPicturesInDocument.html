@@ -7,7 +7,7 @@
     <meta name="keywords" content="ねっちらのエンジニアわっしょい、ブログ">
     <meta name="description" content="ねっちらのエンジニアわっしょい、ブログ">
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=21be16fc7a294768790ab81459a02909dc28a18b" media="screen">
+    <link rel="stylesheet" href="/assets/css/style.css?v=586fded05b2463f491d7d6e861fc9e9e5078adb8" media="screen">
     <link rel="stylesheet" href="/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
 
@@ -35,19 +35,19 @@
       });
     </script>
     <title>
-      Pythonで手作業を無くせ！(第1回) - @netchira
+      Pythonで手作業を無くせ！(第1回:Wordに画像ファイルを自動挿入していく) - @netchira
     </title>
   <!-- Begin Jekyll SEO tag v2.3.0 -->
-<title>Pythonで手作業を無くせ！(第1回) | netchira.github.io</title>
-<meta property="og:title" content="Pythonで手作業を無くせ！(第1回)" />
+<title>Pythonで手作業を無くせ！(第1回:Wordに画像ファイルを自動挿入していく) | netchira.github.io</title>
+<meta property="og:title" content="Pythonで手作業を無くせ！(第1回:Wordに画像ファイルを自動挿入していく)" />
 <meta property="og:locale" content="ja_JP" />
-<meta name="description" content="GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。" />
-<meta property="og:description" content="GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。" />
+<meta name="description" content="Microsoft Word ドキュメントに画像を自動で挿入していくスクリプトを作成しました。" />
+<meta property="og:description" content="Microsoft Word ドキュメントに画像を自動で挿入していくスクリプトを作成しました。" />
 <link rel="canonical" href="http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html" />
 <meta property="og:url" content="http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html" />
 <meta property="og:site_name" content="netchira.github.io" />
 <script type="application/ld+json">
-{"name":null,"description":"GitHub Pages を使用して自分のブログを立ち上げてみましたので、その方法について紹介します。","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html","publisher":null,"image":null,"headline":"Pythonで手作業を無くせ！(第1回)","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+{"name":null,"description":"Microsoft Word ドキュメントに画像を自動で挿入していくスクリプトを作成しました。","author":null,"@type":"WebPage","url":"http://localhost:4000/blog/python_utility/InsertPicturesInDocument.html","publisher":null,"image":null,"headline":"Pythonで手作業を無くせ！(第1回:Wordに画像ファイルを自動挿入していく)","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -79,34 +79,63 @@
 
 
       <section id="main_content">
-        <h2 id="pythonで手作業を無くせ第1回">Pythonで手作業を無くせ！(第1回)</h2>
-<h3 id="microsoft-wordでの手作業を無くす">Microsoft Wordでの手作業を無くす</h3>
+        <h2 id="pythonで手作業を無くせ第1回wordに画像ファイルを自動挿入していく">Pythonで手作業を無くせ！(第1回:Wordに画像ファイルを自動挿入していく)</h2>
+<p>こんにちは、netchiraです。</p>
+
+<p>今回のテーマは「Microsoft Wordでの手作業を無くしたい」との願望を、
+少しだけ叶えるスクリプトを作成しました。</p>
+
+<p><img src="/blog/picture/InsertPicturesInDocument/main_window.PNG" alt="main_window" />
+こんなものを作りました。</p>
 
 <h3 id="前提条件">前提条件</h3>
-<p>Python 2.7 を使用
-開発環境として Anaconda および Spyder (3.2.6) を使用</p>
+<ul>
+  <li>Python 2.7 を使用</li>
+  <li>開発環境として Anaconda および Spyderを使用</li>
+  <li>下記モジュールをAnacondaにインストール
+pip install docx
+pip install Document
+pip install pydocx
+pip install python-docx
+(※もしかしたら、python-docxだけで良いかもしれません。)</li>
+</ul>
 
 <h3 id="処理内容">処理内容</h3>
-<p>こんなものを作りました。
-<img src="/blog/picture/InsertPicturesInDocument/main_window.PNG" alt="main_window" /></p>
+<p>このアプリケーションですが、以下のような使えます。</p>
 
-<p>やってることは、</p>
 <ul>
-  <li>画像ファイルの拡張子を選択する</li>
-  <li>ファイルを選択する</li>
-  <li>フォルダーを選択する</li>
-  <li>一番下のボタンをクリックすると、Wordファイルに画像を張り付けていく処理を行う</li>
-  <li>エラー時にメッセージ表示(少しだけ)</li>
+  <li>ユーザー操作：画像ファイルの拡張子を選択する</li>
+  <li>ユーザー操作：画像挿入先のWordファイル(.docx/.doc)を選択する</li>
+  <li>ユーザー操作：挿入したい画像が格納されているフォルダーを選択する</li>
+  <li>ユーザー操作：一番下のボタンをクリックする</li>
+  <li>スクリプト処理：Wordファイルに画像を張り付けていく処理を行う</li>
+  <li>スクリプト処理：ユーザー操作の不備があったときにエラーメッセージ表示</li>
 </ul>
 
 <p><img src="/blog/picture/InsertPicturesInDocument/open_file.PNG" alt="main_window" />
 <img src="/blog/picture/InsertPicturesInDocument/select_folder.PNG" alt="main_window" />
 <img src="/blog/picture/InsertPicturesInDocument/error_message.PNG" alt="main_window" /></p>
 
-<p>詳しくは下記ソースを見てください。</p>
+<p>GUIアプリケーションを作成するために、Tkinter, ttkを使用しました。
+Tkinterが使用されているソースコードはあまり多くは公開されていないのですが、
+シンプルなコードが書けるし、(個人的には)まあまあ使いやすいなあと思っています。</p>
+
+<p>クラス定義とかやらず(オブジェクト指向ではなく)、手続き型のプログラムにしたせいか、
+下記のような点にハマってしまいました。</p>
+
+<ol>
+  <li>root定義を最初にやって、その後にグローバル変数の定義、ウィジェット(ボタンとか)の定義をしないといけない。(順番に依存関係あり)</li>
+  <li>ボタンに関数を割り当てるために、ウィジェットの定義の前にボタン押下時に実行する関数を書かないといけなかった。(これも順番に依存関係あり)
+(なんとなく、関数はソースコードの末尾に集めたい、という個人的希望があったが、断念せざるを得なかった・・・)</li>
+</ol>
+
+<p>ちょっと気を付けなければいけないです。(-_-;)</p>
+
+<p>解説が少ないですが、詳しくはソースコードをご覧ください。</p>
 
 <h3 id="ソースコード">ソースコード</h3>
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># -*- coding: utf-8 -*-</span>
+
+<pre><code class="language-InsertPicturesInDocument.py"># -*- coding: utf-8 -*-
 """
 Created on Fri Dec 29 20:28:35 2017
 Spyderエディタ
@@ -122,15 +151,15 @@ from docx import Document
 from docx.shared import Inches
 from glob import glob
 
-<span class="gh">#スクリプトの開始</span>
+#スクリプトの開始
 print "Insert Pictures In Document Start"
 
-<span class="gh">#root定義</span>
+#root定義
 root = Tkinter.Tk()
 root.title(u"画像ファイル自動挿入スクリプト")
 root.geometry("600x150")
 
-<span class="gh">#root上のグローバル変数定義</span>
+#root上のグローバル変数定義
 g_PictureType =Tkinter.StringVar()
 g_PictureType.set('type')#変数の初期化
 g_DocumentFile =Tkinter.StringVar()
@@ -138,12 +167,12 @@ g_DocumentFile.set('file_name')#変数の初期化
 g_PictFolderPath =Tkinter.StringVar()
 g_PictFolderPath.set('folder_name')#変数の初期化
 
-<span class="gh">#色の定義</span>
+#色の定義
 BLACK = '#000000'
 RED = '#ff0000'
 PINK = '#ffaacc'
 
-<span class="gh">#挿入する画像のサイズ指定(横幅：width)</span>
+#挿入する画像のサイズ指定(横幅：width)
 PICTURE_SIZE = Inches(4.00)
 
 """
@@ -153,7 +182,7 @@ PICTURE_SIZE = Inches(4.00)
 def SelectDocFile(event):
     global g_DocumentFile
     #ファイルを選択する
-    fTyp = <span class="p">[</span><span class="nv">("docxファイル",".docx"),("docファイル",".doc"),("すべてのファイル",".*")</span><span class="p">]</span>
+    fTyp = [("docxファイル",".docx"),("docファイル",".doc"),("すべてのファイル",".*")]
     iDir = os.path.abspath(os.path.curdir)
     #tkMessageBox.showinfo('Wordファイル選択','ファイルを選択してください。')
     filepath = tkFileDialog.askopenfilename(filetypes = fTyp,initialdir = iDir)
@@ -195,7 +224,7 @@ def InsertPictureFiles(event):
         document = Document(l_file) #docxファイルの読み込み
         
         # 画像ファイルのみのリストを作成する
-        pict_path = l_folder + '/<span class="err">*</span>'
+        pict_path = l_folder + '/*'
         pict_path += l_type
         picts = glob(pict_path)
         
@@ -215,12 +244,12 @@ def InsertPictureFiles(event):
             #document.add_page_break()
     
         #新しくdocxファイルを保存
-        newdoc = l_folder + "<span class="se">\d</span>emo_new.docx"
+        newdoc = l_folder + "\demo_new.docx"
         document.save(newdoc)
         
         #スクリプト処理の成功
         print "Insert Pictures Success!"
-        tkMessageBox.showinfo('Success', "Wordファイルに画像を挿入しました。")<span class="sb">
+        tkMessageBox.showinfo('Success', "Wordファイルに画像を挿入しました。")
 
     elif l_flag2:
         #存在していなかったファイルの表示
@@ -238,42 +267,42 @@ def InsertPictureFiles(event):
         tkMessageBox.showinfo('スクリプトが実行できません', "ファイル名、フォルダを正しく指定してください。\n")
 
 
-</span><span class="gh">#ラベル1(textblock)を配置</span>
+#ラベル1(textblock)を配置
 dispmsg = u"Wordファイルと、画像ファイルが格納されたフォルダを選択してください。その後、画像挿入をクリックしてください。"
 Label1 = Tkinter.Label(text=dispmsg, foreground=BLACK, background=PINK)
 Label1.place(x=0, y=0)
 
-<span class="gh">#ラベル2(textblock)を配置</span>
+#ラベル2(textblock)を配置
 Label2 = Tkinter.Label(text=u'拡張子：', width=10, anchor=Tkinter.W)
 Label2.place(x=30, y=30)
 
-<span class="gh">#コンボボックス(combobox)を配置</span>
+#コンボボックス(combobox)を配置
 Combobox= ttk.Combobox(width=10, textvariable=g_PictureType)
-Combobox.bind('<span class="nt">&lt;</span><span class="err">&lt;</span><span class="na">ComboboxSelected</span><span class="nt">&gt;</span>&gt;')
-Combobox<span class="p">[</span><span class="nv">'values'</span><span class="p">]</span>=('.png','.jpeg','.bmp')
+Combobox.bind('&lt;&lt;ComboboxSelected&gt;&gt;')
+Combobox['values']=('.png','.jpeg','.bmp')
 Combobox.set('.png')
 Combobox.place(x=90, y=30)
 
-<span class="gh">#ボタン1(button)を配置</span>
+#ボタン1(button)を配置
 Button1 = Tkinter.Button(width=10, text=u'ファイル選択')
-Button1.bind("<span class="nt">&lt;ButtonRelease-1&gt;</span>",SelectDocFile) #左クリックされると関数を呼び出すようにバインド
+Button1.bind("&lt;ButtonRelease-1&gt;",SelectDocFile) #左クリックされると関数を呼び出すようにバインド
 Button1.place(x=0, y=60)
     
-<span class="gh">#ボタン2(button)を配置</span>
+#ボタン2(button)を配置
 Button2 = Tkinter.Button(width=10, text=u'フォルダ指定')
-Button2.bind("<span class="nt">&lt;ButtonRelease-1&gt;</span>",SelectFolder) #左クリックされると関数を呼び出すようにバインド
+Button2.bind("&lt;ButtonRelease-1&gt;",SelectFolder) #左クリックされると関数を呼び出すようにバインド
 Button2.place(x=0, y=90)
 
-<span class="gh">#ボタン3(button)を配置</span>
+#ボタン3(button)を配置
 Button3 = Tkinter.Button(width=10, text=u'画像挿入')
-Button3.bind("<span class="nt">&lt;ButtonRelease-1&gt;</span>",InsertPictureFiles) #左クリックされると関数を呼び出すようにバインド
+Button3.bind("&lt;ButtonRelease-1&gt;",InsertPictureFiles) #左クリックされると関数を呼び出すようにバインド
 Button3.place(x=0, y=120)
     
-<span class="gh">#エントリー1(textbox)を配置</span>
+#エントリー1(textbox)を配置
 Entry1 = Tkinter.Entry(width=80, textvariable=g_DocumentFile)
 Entry1.place(x=90, y=60)
     
-<span class="gh">#エントリー2(textbox)を配置</span>
+#エントリー2(textbox)を配置
 Entry2 = Tkinter.Entry(width=80, textvariable=g_PictFolderPath)
 Entry2.place(x=90, y=90)
 
@@ -281,19 +310,23 @@ Entry2.place(x=90, y=90)
 関数の処理内容：ファイルのフルパスから拡張子を除いたファイル名だけを返す
 """
 def GetFileName(file_path):
-    split_str = file_path.split('<span class="se">\\</span>')
-    file_name_ext = split_str<span class="p">[</span><span class="nv">len(split_str) - 1</span><span class="p">]</span>
+    split_str = file_path.split('\\')
+    file_name_ext = split_str[len(split_str) - 1]
     temp = file_name_ext.split(".")
-    file_name = temp<span class="p">[</span><span class="nv">0</span><span class="p">]</span> # 拡張子のないファイル名を取得
+    file_name = temp[0] # 拡張子のないファイル名を取得
     return file_name
     
-<span class="gh">#mainloop</span>
+#mainloop
 root.mainloop()
 
-</code></pre></div></div>
+</code></pre>
 
 <p>以上です。
 これで、何かの時にラクできるかも♪</p>
+
+<h3 id="参考url">参考URL</h3>
+<p><a href="https://python-docx.readthedocs.io/en/latest/#">python-docx</a></p>
+
 
         
         <h3>Top Page へ戻る</h3>
