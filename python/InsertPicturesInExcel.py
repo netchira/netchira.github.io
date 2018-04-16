@@ -87,6 +87,7 @@ def SelectFolder(event):
     iDir = os.path.abspath(os.path.curdir)
     #tkMessageBox.showinfo('フォルダ選択','画像ファイルが格納されているフォルダを選択してください。')
     folderpath = tkFileDialog.askdirectory(initialdir = iDir)
+    if folderpath != "":
     g_PictFolderPath.set(folderpath)
     Entry2.configure(textvariable = g_PictFolderPath)
     
