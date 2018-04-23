@@ -21,7 +21,7 @@ lang: ja_JP
 - Python 2.7 での画像処理ツール開発
 - Python 3.x でのビットコイン自動売買システム開発
 - ディープラーニング(LTSM)
-- Arduino uno(液晶に何か映したい)
+- Arduino uno(倒立振子つくたい)
 - Unity (最近興味あり‼︎)
 
 
