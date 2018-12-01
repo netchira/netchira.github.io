@@ -25,6 +25,14 @@ root = Tkinter.Tk()
 root.title(u"画像ファイル自動挿入スクリプト")
 root.geometry("600x180")
 
+#定数の定義
+DEFAULT_SIZE = '500'
+
+#色の定義
+BLACK = '#000000'
+RED = '#ff0000'
+PINK = '#ffaacc'
+
 #root上のグローバル変数定義
 g_PictureType =Tkinter.StringVar()
 g_PictureType.set('type')#変数の初期化
@@ -36,18 +44,13 @@ g_SelectedSheet =Tkinter.StringVar()
 g_SelectedSheet.set('nothing')#変数の初期化
 
 g_PictSizeWidth =Tkinter.StringVar()
-g_PictSizeWidth.set('500')#変数の初期化
+g_PictSizeWidth.set(DEFAULT_SIZE)#変数の初期化
 g_PictSizeHeight =Tkinter.StringVar()
-g_PictSizeHeight.set('500')#変数の初期化
+g_PictSizeHeight.set(DEFAULT_SIZE)#変数の初期化
 g_PictPosition =Tkinter.StringVar()
 g_PictPosition.set('A10,L11')#変数の初期化
 
 g_ExcelSheets = ('A', 'B', 'C') #tuple 初期化
-
-#色の定義
-BLACK = '#000000'
-RED = '#ff0000'
-PINK = '#ffaacc'
 
 """
  呼び出し元：ボタン1
@@ -56,17 +59,22 @@ PINK = '#ffaacc'
 def SelectExcelFile(event):
     global g_ExcelFile
     #ファイルを選択する
-    fTyp = [("xlsxファイル",".xlsx"),("xlsファイル",".xls"),("すべてのファイル",".*")]
-    iDir = os.path.abspath(os.path.curdir)
+    fTyp = [("xlsxファイル",".xlsx"),("xlsファイル",".xls"),("xlsmファイル",".xlsm"),("すべてのファイル",".*")]
+    if (Entry1.get() == '') & os.path.isfile(Entry1.get()):
+        iDir = os.path.abspath(os.path.curdir)
+        iFile = ''
+    else:
+        iDir = os.path.abspath(Entry1.get())
+        iFile = (Entry1.get()).split('/')[-1]
     #tkMessageBox.showinfo('Excelファイル選択','ファイルを選択してください。')
-    filepath = tkFileDialog.askopenfilename(filetypes = fTyp,initialdir = iDir)
+    filepath = tkFileDialog.askopenfilename(filetypes = fTyp,initialdir = iDir, initialfile = iFile)
     if filepath != "":
         g_ExcelFile.set(filepath)
         Entry1.configure(textvariable = g_ExcelFile)
     
     #シート名を抽出
-    if os.path.exists(filepath):
-        wb = px.load_workbook(filepath)
+    if os.path.exists(Entry1.get()):
+        wb = px.load_workbook(Entry1.get())
         sheet_list = wb.get_sheet_names()
         sheet_tuple = tuple(sheet_list)
         g_ExcelSheets = sheet_tuple
@@ -76,6 +84,7 @@ def SelectExcelFile(event):
     
     # Combobox の選択項目を更新
     Combobox2['values'] = g_ExcelSheets
+    Combobox2.set(g_ExcelSheets[0])
 
 """
  呼び出し元：ボタン2
@@ -84,11 +93,15 @@ def SelectExcelFile(event):
 def SelectFolder(event):
     global g_PictFolderPath
     #フォルダを選択する
-    iDir = os.path.abspath(os.path.curdir)
+    if (Entry2.get() == '') & os.path.isdir(Entry2.get()):
+        iDir = os.path.abspath(os.path.curdir)
+    else:
+        iDir = os.path.abspath(Entry2.get())
     #tkMessageBox.showinfo('フォルダ選択','画像ファイルが格納されているフォルダを選択してください。')
     folderpath = tkFileDialog.askdirectory(initialdir = iDir)
-    g_PictFolderPath.set(folderpath)
-    Entry2.configure(textvariable = g_PictFolderPath)
+    if folderpath != "":
+        g_PictFolderPath.set(folderpath)
+        Entry2.configure(textvariable = g_PictFolderPath)
     
 """
  呼び出し元：ボタン3
@@ -107,8 +120,8 @@ def InsertPictureFiles(event):
     l_pic_position = g_PictPosition.get()
     
     #ファイルの所在の確認
-    l_flag1 = os.path.exists(l_file)
-    l_flag2 = os.path.exists(l_folder)
+    l_flag1 = os.path.isfile(l_file)
+    l_flag2 = os.path.isdir(l_folder)
    
     if l_flag1 and l_flag2:   
         # 画像の一時保存用フォルダを作成する
@@ -131,8 +144,8 @@ def InsertPictureFiles(event):
         picts_num = len(picts_list)
         position_list = CalculatePosition(l_pic_position, picts_num)
 
-        # xlsxファイルの編集処理
-        for index, pict in enumerate(picts_list):        
+        # Excelファイルの編集処理
+        for index, pict in enumerate(picts_list):
             # 画像の編集
             PictureSizeConversion(pict, temp_folder)
             
@@ -146,10 +159,11 @@ def InsertPictureFiles(event):
             temp_img = Image(new_pic_path)
             ws.add_image(temp_img, image_pos)
             
-        # 新しいxlsxファイルを保存
+        # 新しいExcelファイルを保存(ファイル名の末尾に'_new'を追加)
         temp_filename = GetFileName(l_file)
-        temp_filename = l_folder + "/" + temp_filename 
-        newwb = temp_filename  + "_new.xlsx"
+        temp_filename = l_folder + "/" + temp_filename
+        temp_file_extention = GetFileExtention(l_file)
+        newwb = temp_filename  + "_new." + temp_file_extention
         wb.save(newwb)
         
         # メッセージ表示
@@ -162,16 +176,16 @@ def InsertPictureFiles(event):
         # エラー表示：存在していないファイル名の指定
         dispmsg = u"下記ファイルが存在していませんでした。再度、ファイルを選択してください。\n"
         dispmsg += (l_file + "\n")
-        tkMessageBox.showinfo('Excelファイルが見つかりません', dispmsg)
+        tkMessageBox.showinfo(u'Excelファイルが見つかりません', dispmsg)
 
     elif l_flag1:
         # エラー表示：存在していないフォルダ名の指定
         dispmsg = u"選択したフォルダが存在していませんでした。再度、フォルダを選択してください。\n"
         dispmsg += (l_folder + "\n")
-        tkMessageBox.showinfo('画像を格納したフォルダが見つかりません', dispmsg)
+        tkMessageBox.showinfo(u'画像を格納したフォルダが見つかりません', dispmsg)
     
     else :
-        tkMessageBox.showinfo('スクリプトが実行できません', "ファイル名、フォルダを正しく指定してください。\n")
+        tkMessageBox.showinfo(u'スクリプトが実行できません', u"ファイル名、フォルダを正しく指定してください。\n")
 
 
 """
@@ -194,23 +208,40 @@ def get_number_list(text):
 """
 def PictureSizeConversion(pic_path, hozon_directory):
     global g_PictSizeHeight
-    global g_PictSizeWidt
+    global g_PictSizeWidth
     
     # 変更したい画像サイズの取得
-    l_pic_height = g_PictSizeHeight.get()
-    l_pic_width  = g_PictSizeWidth.get()
-    intHeight = int(l_pic_height)
-    intWidth  = int(l_pic_width)
+    if Entry3.get() == '':
+        g_PictSizeHeight.set(DEFAULT_SIZE)
+        l_pic_height = g_PictSizeHeight.get()
+    else:
+        g_PictSizeHeight.set(Entry3.get())
+        l_pic_height = g_PictSizeHeight.get()
+        
+    if Entry4.get() == '':
+        g_PictSizeWidth.set(DEFAULT_SIZE)
+        l_pic_width  = g_PictSizeWidth.get()
+    else:
+        g_PictSizeWidth.set(Entry4.get())
+        l_pic_width = g_PictSizeWidth.get()
+        
+    l_intHeight = int(l_pic_height)
+    l_intWidth  = int(l_pic_width)
     
-    # 画像のサイズ変更(PILライブラリ)
-    origin_pic_path = pic_path
-    img_raw = PIL.Image.open(origin_pic_path)
-    img_copy = img_raw.copy()
-    img_resize = img_copy.resize((intWidth, intHeight), PIL.Image.LANCZOS)
-    
-    # 画像の保存
-    new_pic_path = hozon_directory + "/" + os.path.basename(pic_path)
-    img_resize.save(new_pic_path)
+    if (l_intHeight > 0) & (l_intWidth > 0):
+        # 画像のサイズ変更(PILライブラリ)
+        origin_pic_path = pic_path
+        img_raw = PIL.Image.open(origin_pic_path)
+        img_copy = img_raw.copy()
+        img_resize = img_copy.resize((l_intWidth, l_intHeight), PIL.Image.LANCZOS)
+        
+        # 画像の保存
+        new_pic_path = hozon_directory + "/" + os.path.basename(pic_path)
+        img_resize.save(new_pic_path)
+    else:
+        # エラー表示：画像サイズの不適切な指定
+        dispmsg = u"画像のサイズ(縦・横)がゼロとなっています。再度指定しなおしてください。\n"
+        tkMessageBox.showinfo(u'画像サイズの不適切な指定', dispmsg)
 
 """
  関数の処理内容：画像を挿入するセルの位置を算出する
@@ -219,45 +250,51 @@ def CalculatePosition(base_position, picts_num):
     global g_PictSizeHeight
     
     # 画像のサイズからExcel何行分に相当するか算出
-    l_pic_height = g_PictSizeHeight.get()
-    intHeight = int(l_pic_height)
-    pict_height = intHeight / 16
+    
+    if Entry3.get() == '':
+        g_PictSizeHeight.set(DEFAULT_SIZE)
+        l_pic_height = g_PictSizeHeight.get()
+    else:
+        g_PictSizeHeight.set(Entry3.get())
+        l_pic_height = g_PictSizeHeight.get()
+        
+    l_intHeight = int(l_pic_height)
+    l_pict_height = l_intHeight / 16
     
     # ユーザーが指定した挿入位置の決定するために、行列を作成して何行何列か算出する
     split_str_list = base_position.split(',')
-    row = len(split_str_list)
+    column = len(split_str_list)
     
-    if picts_num % row == 0:
-        collumn = picts_num / row
+    if picts_num % column == 0:
+        row = picts_num / column
     else:
-        collumn = picts_num / row + 1     
+        row = picts_num / column + 1     
     
     # ユーザーが指定したセル位置の列数のみ(数字部分のみ)を取得し、NumPy行列の生成
     number_list = get_number_list(base_position)
     nparray = np.array(number_list, dtype = 'int64')
     
     # NumPy行列を必要列数分リピートする。
-    new_array = np.tile(nparray, collumn)
+    xl_base_array = np.tile(nparray, row)
     
     # 画像を張り付ける2行目以降の位置を決定
-    max_heght = pict_height * collumn
-    pict_scale = np.arange(0, max_heght, pict_height)
-    number_array = pict_scale.repeat(row)
+    pict_offset_postion_array = np.arange(0, l_pict_height * row, l_pict_height)
+    xl_cell_number_array = pict_offset_postion_array.repeat(column)
     
     # 行列の加算、リストへの変換
-    target_array = new_array + number_array
-    target_list = target_array.tolist()
+    xl_target_cell_array = xl_base_array + xl_cell_number_array 
+    xl_target_cell_list = xl_target_cell_array.tolist()
     
     # str型に変換
     result_sono1= []
-    for content in target_list:
+    for content in xl_target_cell_list:
         result_sono1.append(str(content))
         
     # 半角英字だけ抽出
     text_list = get_alphabet_list(base_position)
     result_sono2= []
-    for x in range(0, collumn):
-        for index in range(0, row):
+    for x in range(0, row):
+        for index in range(0, column):
             result_sono2.append(text_list[index])
     
     # 最終的な結果を算出
@@ -296,6 +333,14 @@ def GetFileName(file_path):
     file_name = temp[0] # 拡張子のないファイル名を取得
     return file_name
 
+"""
+関数の処理内容：ファイルのフルパスから拡張子を除いたファイル名だけを返す
+"""
+def GetFileExtention(file_path):
+    file_name_ext = os.path.basename(file_path)
+    temp = file_name_ext.split(".")
+    file_extention = temp[-1] # ファイルの拡張子を取得
+    return file_extention
 
 
 #ラベル1(textblock)を配置
@@ -315,17 +360,17 @@ Label3.place(x=210, y=30)
 Label4 = Tkinter.Label(text=u'サイズ横：', width=10, anchor=Tkinter.W)
 Label4.place(x=370, y=30)
 
-#ラベル3(textblock)を配置
-Label3 = Tkinter.Label(text=u'シート名：', width=10, anchor=Tkinter.W)
-Label3.place(x=30, y=90)
+#ラベル5(textblock)を配置
+Label5 = Tkinter.Label(text=u'シート名：', width=10, anchor=Tkinter.W)
+Label5.place(x=30, y=90)
 
-#ラベル4(textblock)を配置
-Label4 = Tkinter.Label(text=u'挿入セル：', width=10, anchor=Tkinter.W)
-Label4.place(x=210, y=90)
+#ラベル6(textblock)を配置
+Label6 = Tkinter.Label(text=u'挿入セル：', width=10, anchor=Tkinter.W)
+Label6.place(x=210, y=90)
 
-#ラベル4(textblock)を配置
-Label5 = Tkinter.Label(text=u'(※コンマ(,)で区切ると複数列に挿入)')
-Label5.place(x=340, y=90)
+#ラベル7(textblock)を配置
+Label7 = Tkinter.Label(text=u'(※コンマ(,)で区切ると複数列に挿入)')
+Label7.place(x=340, y=90)
 
 #コンボボックス1(combobox)を配置
 Combobox1= ttk.Combobox(width=10, textvariable=g_PictureType)
