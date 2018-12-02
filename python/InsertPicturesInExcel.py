@@ -59,7 +59,7 @@ g_ExcelSheets = ('A', 'B', 'C') #tuple 初期化
 def SelectExcelFile(event):
     global g_ExcelFile
     #ファイルを選択する
-    fTyp = [("xlsxファイル",".xlsx"),("xlsファイル",".xls"),("xlsmファイル",".xlsm"),("すべてのファイル",".*")]
+    fTyp = [("xlsxファイル",".xlsx"),("xlsmファイル",".xlsm"),("すべてのファイル",".*")]
     if (Entry1.get() == '') & os.path.isfile(Entry1.get()):
         iDir = os.path.abspath(os.path.curdir)
         iFile = ''
