@@ -122,27 +122,32 @@ def SelectFolder(event):
 """
 def InsertPictureFiles(event):
     global g_PictPosition
-    global g_InsertionPicturesName
+    #global g_InsertionPicturesName
     
     l_pic_position = g_PictPosition.get()
-    l_picts_list = get_picture_list()    
+    #l_picts_list = g_InsertionPicturesName.get() # 1文字ずつ取得してしまい、誤実装
     
-    # 
-    new_directory = make_new_directory()
+    # 画像ファイル一覧を取得
+    picts_list = get_picture_list() 
     
-    #
+    # ワークブックwb,ワークシートwsを取得
     xl_list = get_excel_sheet()
-    wb = xl_list[0]
-    ws = xl_list[1]
+
+    # 変数が空でないことを確認
+    if (picts_list != None) & (xl_list != None):
+        # xl_listを分解
+        wb = xl_list[0]
+        ws = xl_list[1]
     
-    #
-    if (l_picts_list != None) & (ws != None):
         # 画像の挿入位置の算出
-        picts_num = len(l_picts_list)
+        picts_num = len(picts_list)
         position_list = CalculatePosition(l_pic_position, picts_num)
 
+        # サイズ編集後の画像ファイル格納フォルダパスを取得
+        new_directory = make_new_directory()
+
         # Excelファイルの編集処理
-        for index, pict in enumerate(l_picts_list):
+        for index, pict in enumerate(picts_list):
             # 画像の編集
             PictureSizeConversion(pict, new_directory)
             
@@ -165,7 +170,7 @@ def InsertPictureFiles(event):
         dispmsg += u"また、一時的にサイズを変更した画像ファイルをTempForPythonフォルダに格納しています。不要であれば削除してください。\n"
         dispmsg += u"\n"
         dispmsg += u"出力ファイル名:\n"
-        dispmsg += ( newwb + "\n")
+        dispmsg += ( newwb + "\n\n")
         dispmsg += u"サイズ編集後の画像ファイル出力先:\n"        
         dispmsg += ( new_directory + "\n")
         tkMessageBox.showinfo('Success', dispmsg)
@@ -467,6 +472,10 @@ Label6.place(x=210, y=90)
 Label7 = Tkinter.Label(text=u'(※コンマ(,)で区切ると複数列に挿入)')
 Label7.place(x=340, y=90)
 
+#ラベル8(textblock)を配置
+Label8 = Tkinter.Label(text=u'画像ファイル：')
+Label8.place(x=10, y=150)
+
 #コンボボックス1(combobox)を配置
 Combobox1= ttk.Combobox(width=10, textvariable=g_PictureType)
 Combobox1.bind('<<ComboboxSelected>>')
@@ -496,14 +505,18 @@ Button3 = Tkinter.Button(width=10, text=u'画像挿入')
 Button3.bind("<ButtonRelease-1>",InsertPictureFiles) #左クリックされると関数を呼び出すようにバインド
 Button3.place(x=0, y=270)
 
+# リストボックス用にフレーム(Frame)を配置
+Frame = Tkinter.Frame()
+Frame.place(x=90, y=150)
+
 # スクロールバー付きリストボックス(Listbox)を配置
-Listbox = Tkinter.Listbox(width = 80, height=4, listvariable=g_InsertionPicturesName)
-Listbox.place(x=90, y=150)
+Listbox = Tkinter.Listbox(Frame, width = 80, height=7, listvariable=g_InsertionPicturesName)
+Listbox.grid(row=0, column=0)
 
 # スクロールバー(Scrollbar)を配置
-Scrollbar = ttk.Scrollbar(command=Listbox.yview)
+Scrollbar = ttk.Scrollbar(Frame, orient=Tkinter.VERTICAL, command=Listbox.yview)
+Scrollbar.grid(row=0, column=1, sticky=(Tkinter.N + Tkinter.S))
 Listbox['yscrollcommand'] = Scrollbar.set
-Scrollbar.place(x=575, y=150)
 
 #エントリー1(textbox)を配置
 Entry1 = Tkinter.Entry(width=80, textvariable=g_ExcelFile)
