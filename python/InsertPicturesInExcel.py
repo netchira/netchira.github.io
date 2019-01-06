@@ -23,7 +23,7 @@ print "Insert Pictures In Excel Start"
 #root定義
 root = Tkinter.Tk()
 root.title(u"画像ファイル自動挿入スクリプト")
-root.geometry("600x300")
+root.geometry("600x180")
 
 #定数の定義
 DEFAULT_SIZE = '500'
@@ -50,9 +50,6 @@ g_PictSizeHeight.set(DEFAULT_SIZE)#変数の初期化
 g_PictPosition =Tkinter.StringVar()
 g_PictPosition.set('A10,L11')#変数の初期化
 
-
-g_InsertionPicturesName =Tkinter.StringVar()
-
 g_ExcelSheets = ('A', 'B', 'C') #tuple 初期化
 
 """
@@ -61,24 +58,21 @@ g_ExcelSheets = ('A', 'B', 'C') #tuple 初期化
 """
 def SelectExcelFile(event):
     global g_ExcelFile
-
-    #Entryに文字列がタイプされているか確認
-    if (Entry1.get() != '') & os.path.exists(Entry1.get()):
-        iDir = os.path.abspath(Entry1.get())
-        iFile = (Entry1.get()).split('/')[-1]
-    else:
+    #ファイルを選択する
+    fTyp = [("xlsxファイル",".xlsx"),("xlsファイル",".xls"),("xlsmファイル",".xlsm"),("すべてのファイル",".*")]
+    if (Entry1.get() == '') & os.path.isfile(Entry1.get()):
         iDir = os.path.abspath(os.path.curdir)
         iFile = ''
+    else:
+        iDir = os.path.abspath(Entry1.get())
+        iFile = (Entry1.get()).split('/')[-1]
     #tkMessageBox.showinfo('Excelファイル選択','ファイルを選択してください。')
-    fTyp = [("xlsxファイル",".xlsx"),("xlsファイル",".xls"),("xlsmファイル",".xlsm"),("すべてのファイル",".*")]
-    
-    #Excelファイルを選択する
-    filepath = tkFileDialog.askopenfilename(filetypes = fTyp, initialdir = iDir, initialfile = iFile)
+    filepath = tkFileDialog.askopenfilename(filetypes = fTyp,initialdir = iDir, initialfile = iFile)
     if filepath != "":
         g_ExcelFile.set(filepath)
         Entry1.configure(textvariable = g_ExcelFile)
     
-    #Excelファイルからシート名を抽出
+    #シート名を抽出
     if os.path.exists(Entry1.get()):
         wb = px.load_workbook(Entry1.get())
         sheet_list = wb.get_sheet_names()
@@ -99,52 +93,61 @@ def SelectExcelFile(event):
 def SelectFolder(event):
     global g_PictFolderPath
     #フォルダを選択する
-    if (Entry2.get() != '') & os.path.exists(Entry2.get()):
-        iDir = os.path.abspath(Entry2.get())
-    else:
+    if (Entry2.get() == '') & os.path.isdir(Entry2.get()):
         iDir = os.path.abspath(os.path.curdir)
+    else:
+        iDir = os.path.abspath(Entry2.get())
     #tkMessageBox.showinfo('フォルダ選択','画像ファイルが格納されているフォルダを選択してください。')
     folderpath = tkFileDialog.askdirectory(initialdir = iDir)
     if folderpath != "":
         g_PictFolderPath.set(folderpath)
         Entry2.configure(textvariable = g_PictFolderPath)
-
-    # 指定したフォルダ内にある画像ファイル一覧を取得する
-    picts_list = get_picture_list()
-    if picts_list != None:   
-        # リストボックス変数へのセット
-        g_InsertionPicturesName.set(tuple(picts_list))
-
     
 """
  呼び出し元：ボタン3
  関数の処理内容：Excelファイルに画像を挿入する
 """
 def InsertPictureFiles(event):
-    global g_PictPosition
-    global g_InsertionPicturesName
+    global g_ExcelFile
+    global g_PictFolderPath
+    global g_PictureType
+    global g_SelectedSheet
     
+    l_file   = g_ExcelFile.get()
+    l_folder = g_PictFolderPath.get()
+    l_type   = g_PictureType.get()
+    l_selectedsheet = g_SelectedSheet.get()
     l_pic_position = g_PictPosition.get()
-    l_picts_list = get_picture_list()    
     
-    # 
-    new_directory = make_new_directory()
-    
-    #
-    xl_list = get_excel_sheet()
-    wb = xl_list[0]
-    ws = xl_list[1]
-    
-    #
-    if (l_picts_list != None) & (ws != None):
+    #ファイルの所在の確認
+    l_flag1 = os.path.isfile(l_file)
+    l_flag2 = os.path.isdir(l_folder)
+   
+    if l_flag1 and l_flag2:   
+        # 画像の一時保存用フォルダを作成する
+        temp_folder = l_folder + u"/TempForPython"
+        if not os.path.exists(temp_folder):
+            os.mkdir(temp_folder)
+            
+        # Excelファイルを開く
+        wb = px.load_workbook(l_file)
+
+        # シートを指定する
+        ws = wb.get_sheet_by_name(l_selectedsheet)
+        
+        # 画像ファイルのみのリストを作成する(拡張子はユーザーが指定したもの)
+        picts_path = l_folder + '/*'
+        picts_path += l_type
+        picts_list = glob(picts_path)
+        
         # 画像の挿入位置の算出
-        picts_num = len(l_picts_list)
+        picts_num = len(picts_list)
         position_list = CalculatePosition(l_pic_position, picts_num)
 
         # Excelファイルの編集処理
-        for index, pict in enumerate(l_picts_list):
+        for index, pict in enumerate(picts_list):
             # 画像の編集
-            PictureSizeConversion(pict, new_directory)
+            PictureSizeConversion(pict, temp_folder)
             
             # 画像ファイル名の挿入
             filename_pos = position_list[index]
@@ -152,135 +155,37 @@ def InsertPictureFiles(event):
             
             # 画像の挿入
             image_pos = CellRowIncrement(position_list[index])
-            new_pic_path = new_directory +  "/" + os.path.basename(pict)
+            new_pic_path = temp_folder +  "/" + os.path.basename(pict)
             temp_img = Image(new_pic_path)
             ws.add_image(temp_img, image_pos)
             
-        # Excelファイルを新規作成・保存
-        newwb = save_excel_file(wb)
+        # 新しいExcelファイルを保存(ファイル名の末尾に'_new'を追加)
+        temp_filename = GetFileName(l_file)
+        temp_filename = l_folder + "/" + temp_filename
+        temp_file_extention = GetFileExtention(l_file)
+        newwb = temp_filename  + "_new." + temp_file_extention
+        wb.save(newwb)
         
         # メッセージ表示
         print "Insert Pictures Success!"
         dispmsg = u"Excelファイルに画像を挿入しました。ベースとなったExcelファイルと同じディレクトリに新しいExcelファイルを出力しました。\n"
         dispmsg += u"また、一時的にサイズを変更した画像ファイルをTempForPythonフォルダに格納しています。不要であれば削除してください。\n"
-        dispmsg += u"\n"
-        dispmsg += u"出力ファイル名:\n"
-        dispmsg += ( newwb + "\n")
-        dispmsg += u"サイズ編集後の画像ファイル出力先:\n"        
-        dispmsg += ( new_directory + "\n")
         tkMessageBox.showinfo('Success', dispmsg)
-    
-    else:
-        # メッセージ表示
-        dispmsg = u"Excelファイルまたはフォルダが適切ではありませんでした。処理を中止します。\n"
-        tkMessageBox.showinfo('Failure', dispmsg)
 
-"""
- 関数の処理内容：指定したフォルダが存在しているか確認し、そのフォルダ内にある画像ファイルの一覧をリターンする。
-"""
-def get_picture_list():
-    global g_PictFolderPath
-    global g_PictureType
-
-    l_folder = g_PictFolderPath.get()
-    l_type   = g_PictureType.get()
-    
-    #フォルダの所在確認
-    l_folder_exist_flag = os.path.isdir(l_folder)
-   
-    if l_folder_exist_flag:               
-        # 画像ファイルのみのリストを作成する(拡張子はユーザーが指定したもの)
-        picts_path = l_folder + '/*'
-        picts_path += l_type
-        picts_list = glob(picts_path)
-        
-    else:
-        # エラー表示：存在していないフォルダ名の指定
-        dispmsg = u"選択したフォルダが存在していませんでした。再度、フォルダを選択してください。\n"
-        dispmsg += (l_folder + "\n")
-        tkMessageBox.showinfo(u'画像を格納したフォルダが見つかりません', dispmsg)
-        picts_list = []
-        
-    return picts_list
-        
-"""
- 関数の処理内容：指定したフォルダが存在しているか確認し、そのフォルダ内に新しいディレクトリを作成し、そのフォルダパスをリターンする。
-"""
-def make_new_directory():
-    global g_PictFolderPath
-
-    l_folder = g_PictFolderPath.get()
-    
-    #フォルダの所在確認
-    l_folder_exist_flag = os.path.isdir(l_folder)
-   
-    if l_folder_exist_flag:       
-        # 画像の一時保存用フォルダを作成する
-        new_directory = l_folder + u"/TempForPython"
-        if not os.path.exists(new_directory):
-            os.mkdir(new_directory)
-            
-    else:
-        # エラー表示：存在していないフォルダ名の指定
-        dispmsg = u"選択したフォルダが存在していませんでした。再度、フォルダを選択してください。\n"
-        dispmsg += (l_folder + "\n")
-        tkMessageBox.showinfo(u'画像を格納したフォルダが見つかりません', dispmsg)
-        new_directory = []
-        
-    return new_directory
-        
-
-"""
- 関数の処理内容：Excelファイルを指定し、ワークシートをリターンする
-"""
-def get_excel_sheet():
-    global g_ExcelFile
-    global g_SelectedSheet
-    
-    l_file   = g_ExcelFile.get()
-    l_selectedsheet = g_SelectedSheet.get()
-    
-    ret_list = []
-    
-    #ファイルの所在確認
-    l_excel_exist_flag = os.path.isfile(l_file)
-   
-    if l_excel_exist_flag:               
-        # Excelファイルを開く
-        wb = px.load_workbook(l_file)
-
-        # シートを指定する
-        ws = wb.get_sheet_by_name(l_selectedsheet)
-        
-        ret_list.append(wb)
-        ret_list.append(ws)
-    else:
-        # エラー表示：存在していないフォルダ名の指定
-        dispmsg = u"選択したExcelファイルが存在していませんでした。再度、ファイルを選択してください。\n"
+    elif l_flag2:
+        # エラー表示：存在していないファイル名の指定
+        dispmsg = u"下記ファイルが存在していませんでした。再度、ファイルを選択してください。\n"
         dispmsg += (l_file + "\n")
-        tkMessageBox.showinfo(u'指定したExcelファイルが見つかりません', dispmsg)
-        ret_list = []
+        tkMessageBox.showinfo(u'Excelファイルが見つかりません', dispmsg)
 
-    return ret_list
-
-"""
- 関数の処理内容：Excelファイルを保存し、新しいExcelファイルのパスをリターンする
-"""
-def save_excel_file(wb):
-    global g_ExcelFile
-    global g_PictFolderPath
+    elif l_flag1:
+        # エラー表示：存在していないフォルダ名の指定
+        dispmsg = u"選択したフォルダが存在していませんでした。再度、フォルダを選択してください。\n"
+        dispmsg += (l_folder + "\n")
+        tkMessageBox.showinfo(u'画像を格納したフォルダが見つかりません', dispmsg)
     
-    l_file   = g_ExcelFile.get()
-    l_folder = g_PictFolderPath.get()
-    
-    # 新しいExcelファイルを保存(ファイル名の末尾に'_new'を追加)
-    temp_filename = GetFileName(l_file)
-    temp_filename = l_folder + "/" + temp_filename
-    temp_file_extention = GetFileExtention(l_file)
-    newwb = temp_filename  + "_new." + temp_file_extention
-    wb.save(newwb)
-    
-    return newwb
+    else :
+        tkMessageBox.showinfo(u'スクリプトが実行できません', u"ファイル名、フォルダを正しく指定してください。\n")
 
 
 """
@@ -494,17 +399,8 @@ Button2.place(x=0, y=120)
 #ボタン3(button)を配置
 Button3 = Tkinter.Button(width=10, text=u'画像挿入')
 Button3.bind("<ButtonRelease-1>",InsertPictureFiles) #左クリックされると関数を呼び出すようにバインド
-Button3.place(x=0, y=270)
-
-# スクロールバー付きリストボックス(Listbox)を配置
-Listbox = Tkinter.Listbox(width = 80, height=4, listvariable=g_InsertionPicturesName)
-Listbox.place(x=90, y=150)
-
-# スクロールバー(Scrollbar)を配置
-Scrollbar = ttk.Scrollbar(command=Listbox.yview)
-Listbox['yscrollcommand'] = Scrollbar.set
-Scrollbar.place(x=575, y=150)
-
+Button3.place(x=0, y=150)
+    
 #エントリー1(textbox)を配置
 Entry1 = Tkinter.Entry(width=80, textvariable=g_ExcelFile)
 Entry1.place(x=90, y=60)
