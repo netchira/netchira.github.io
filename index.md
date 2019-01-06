@@ -32,6 +32,15 @@ lang: ja_JP
 一助となれば幸いです。
 
 
+### ご要望に応じてPythonアプリケーションをつくります(2019/01/06更新)
+今年2019年から新しく、読者の方とのコミュニケーションを生み出す企画を開始します！
+すべて無料です。GitHub上に公開し、オープンソース扱いにはなりますが、ご要望いただいたテーマのアプリケーションを作成いたします。
+もしご興味ありましたら、下記URLからリクエストしてください。
+よろしくお願い致します！
+
+[リクエスト先](https://github.com/netchira/netchira.github.io/issues/2)
+
+
 ### 参考URL
 - [jekyllで使用する変数](https://jekyllrb.com/docs/variables/)
 - [jekyllで使用する文法(liquid)](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#for-loops)
