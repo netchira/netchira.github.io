@@ -80,11 +80,14 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 もし起動しない場合、下記URLを参考にしてパス設定を手動で行ってください。  
 [環境変数：Pathの設定](http://whitecat-student.hatenablog.com/entry/2016/12/28/193156)
 
-そして、これで無事に使えるようになる・・・と思いきや、pyqtgraphのライブラリについてdevelopment branchにあるものを使用してくれ、とWARNINGが表示されます。
-ということで、ここは素直に指定されたものをインストールしなおしましょう。  
-(コマンドがちょっと長いから、タイプミスしないように気を付けてくださいね。)  
+そして、これで無事に使えるようになる・・・と思いきや、pyqtgraphのライブラリについてdevelopment branchにあるものを使用してくれ、
+とWARNINGが表示されます。ということで、ここは素直に指定されたものをインストールしなおしましょう。  
+下記画面は、WARNINGが表示されたときのキャプチャです。
 
 ![asammdf実行1回目](../picture/asammdf実行1回目.PNG)
+
+(ということで改めてAnaconda Promptを開き、WARNINGで表示されたpip install -I --no-deps ・・・というコマンドをそのまま入力してあげましょう。
+ちょっと長いからタイプミスしないように気を付けてくださいね。)  
 
 ここまでできると、OKでございます。  
 どうぞ快適なPythonライフをば。
