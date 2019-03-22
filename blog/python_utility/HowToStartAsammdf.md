@@ -82,7 +82,9 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 
 そして、これで無事に使えるようになる・・・と思いきや、pyqtgraphのライブラリについてdevelopment branchにあるものを使用してくれ、とWARNINGが表示されます。
 ということで、ここは素直に指定されたものをインストールしなおしましょう。  
-(コマンドがちょっと長いから、タイプミスしないように気を付けてくださいね。)
+(コマンドがちょっと長いから、タイプミスしないように気を付けてくださいね。)  
+
+![asammdf実行1回目](../picture/asammdf実行1回目.PNG)
 
 ここまでできると、OKでございます。  
 どうぞ快適なPythonライフをば。
