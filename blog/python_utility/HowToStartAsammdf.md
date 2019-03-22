@@ -10,8 +10,8 @@ lang: ja_JP
 今回は、GitHub上をネットサーフィンしていて、個人的に特に興味を持ったライブラリを紹介いたします。
 今回ご紹介するライブラリは[asammdf]です。
 
-URL：[asammdf](https://github.com/danielhrisca/asammdf)
-概要：ASAM MDF/MF4形式ファイルの内容の閲覧ができます。
+URL：[asammdf](https://github.com/danielhrisca/asammdf)  
+概要：ASAM MDF/MF4形式ファイルの内容の閲覧ができます。  
 
 
 ### 前提条件
@@ -25,10 +25,10 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 
 
 ### asammdfについて
-以下のURLでasammdfの全貌が明らかとなっております。
+以下のURLでasammdfの全貌が明らかとなっております。  
 [Welcome to asammdf's documentation!](https://asammdf.readthedocs.io/en/latest/)
 
-そして、以下のURLでは大変カッコイイGUIまで搭載されたasammdf GUIについて紹介されています。
+そして、以下のURLでは大変カッコイイGUIまで搭載されたasammdf GUIについて紹介されています。  
 [asammdf's GUI](https://asammdf.readthedocs.io/en/latest/gui.html)
 
 さて、それではこれを利用できるようになるための準備を進めて参りましょう。
@@ -42,9 +42,8 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 
 
 最初にAnacondaのインストールです。
-下記URLからダウンロードできます。3.7をインストールしましょう。
-
-[asammdf](https://www.anaconda.com/distribution/)
+下記URLからダウンロードできます。3.7をインストールしましょう。  
+[Anaconda](https://www.anaconda.com/distribution/)
 
 すべてデフォルト設定のままインストールして問題ないです。
 - ユーザーは自分のみ(Just Me)
@@ -78,14 +77,14 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 
 あるいは、Anaconda3/Scriptsフォルダ内にあるasammdf.exeをダブルクリックから起動してみてください。
 
-もし起動しない場合、下記URLを参考にしてパス設定を手動で行ってください。
+もし起動しない場合、下記URLを参考にしてパス設定を手動で行ってください。  
 [環境変数：Pathの設定](http://whitecat-student.hatenablog.com/entry/2016/12/28/193156)
 
 そして、これで無事に使えるようになる・・・と思いきや、pyqtgraphのライブラリについてdevelopment branchにあるものを使用してくれ、とWARNINGが表示されます。
-ということで、ここは素直に指定されたものをインストールしなおしましょう。
+ということで、ここは素直に指定されたものをインストールしなおしましょう。  
 (コマンドがちょっと長いから、タイプミスしないように気を付けてくださいね。)
 
-ここまでできると、OKでございます。
+ここまでできると、OKでございます。  
 どうぞ快適なPythonライフをば。
 
 
