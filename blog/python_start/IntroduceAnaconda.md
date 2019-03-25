@@ -43,19 +43,21 @@ Python始めてみると、色んなことができることが分かってき�
 |tkFileDialog|tkinter.filedialog|ファイル操作|
 |tkMessageBox|tkinter.messagebox|メッセージボックス表示|
 
+
 ちなみに、Anaconda/Spyderはこんな感じです。
 
 Anaconda Navigator
-
+![Anaconda Navigator](../picture/Anaconda Navigator.PNG)
 
 
 Anaconda Prompt
-
+![Anaconda Prompt](../picture/Anaconda Prompt.PNG)
 
 
 Spyder
-
+![Spyder](../picture/Spyder.PNG)
 
 
 
 さあ、皆さんもPythonをはじめてみませんか！？
+
