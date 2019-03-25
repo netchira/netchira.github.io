@@ -1,7 +1,7 @@
 ---
 layout: adv_job_python
 title: Pythonを効果的に使え！(asammdf編)
-description: ASAM MDF/MF4形式ファイルのパーサであるasammdfのはじめか型について解説します。
+description: ASAM MDF/MF4形式ファイルのパーサであるasammdfの始め方、asammdfの使い方について解説します。
 lang: ja_JP
 ---
 ## Pythonを効果的に使え！(asammdf編)
@@ -10,7 +10,7 @@ lang: ja_JP
 今回は、GitHub上をネットサーフィンしていて、個人的に特に興味を持ったライブラリを紹介いたします。
 今回ご紹介するライブラリは[asammdf]です。
 
-URL：[asammdf](https://github.com/danielhrisca/asammdf)  
+URL：[asammdf repository](https://github.com/danielhrisca/asammdf)  
 概要：ASAM MDF/MF4形式ファイルの内容の閲覧ができます。  
 
 
@@ -31,19 +31,18 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 そして、以下のURLでは大変カッコイイGUIまで搭載されたasammdf GUIについて紹介されています。  
 [asammdf's GUI](https://asammdf.readthedocs.io/en/latest/gui.html)
 
-さて、それではこれを利用できるようになるための準備を進めて参りましょう。
+さて、それではasammdfの使い方について解説していきます！
 
 
 ### 環境について
-今回は環境の整備の仕方について説明するだけです。
+今回は環境の整備の仕方について説明するだけです。(Pythonのコードは何も書きません)
 
-最近(2019年3月)はasammdfのバージョンが毎日のように更新されております。開発が大変活発である模様です。
-そのため、ライブラリの「バージョン」には特に留意して環境構築することが重要です。
-
+asammdfって、最近(2019年3月)バージョンが毎日のように更新されております。開発が大変活発である模様です。
+そのため、以下に記述する内容のうち、ライブラリの「バージョン」に関しては特に留意していただきたいと思います。
 
 最初にAnacondaのインストールです。
 下記URLからダウンロードできます。3.7をインストールしましょう。  
-[Anaconda](https://www.anaconda.com/distribution/)
+[Anaconda web page](https://www.anaconda.com/distribution/)
 
 すべてデフォルト設定のままインストールして問題ないです。
 - ユーザーは自分のみ(Just Me)
@@ -64,9 +63,9 @@ URL：[asammdf](https://github.com/danielhrisca/asammdf)
 ライブラリ名の後に[==(version)]とすることで、特定のバージョンをダウンロード・インストールしてくれます。
 
 なお、私は今回、Anaconda環境でasammdfの利用をトライしましたが、asammdfが動作するために必須となるPyQt5の最新版を
-インストールすると、Anacondaに標準搭載のSpyderがなんと起動できなくなります。
-そのため、Spyder 3.3.3 が動作できるPyQt5のバージョンを調べましたので、上記の通りのインストールをお勧めいたします。
+インストールすると、Anacondaに付属しているSpyderが、なんと起動できなくなります。(残念！)  
 
+そのため、Spyder 3.3.3 が動作できるPyQt5のバージョンを調べましたので、上記の通りのインストールをお勧めいたします。  
 
 また、pip listとコマンドを入力すると、現在インストールされているライブラリの一覧が確認できます。
 
