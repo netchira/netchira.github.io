@@ -35,7 +35,6 @@ Pythonでは標準ライブラリとしてwin32comが用意されており、こ
 
 
 ''' python: ConvertDocx2HtmlUsingWord.py
-
 def ConvertDocx2HtmlUsingWord(DocxFilePath):
     import win32com.client
     import os
