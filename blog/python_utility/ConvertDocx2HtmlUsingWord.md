@@ -1,97 +1,101 @@
 ---
 layout: default
-titel: Python��RPA���������悤(��1��:Word���g�p�����t�@�C���ϊ�)
-description: Word���g�p����docx�t�@�C����HTML��PDF�ɕϊ��Bwin32com�BRPA�B
+titel: PythonでRPAを実装しよう(第1回:Wordを使用したファイル変換)
+description: Wordを使用してdocxファイルをHTMLやPDFに変換。win32com。RPA。
 lang: ja_JP
 ---
-## Python��RPA���������悤(��1��:Word���g�p�����t�@�C���ϊ�)
 
-����ɂ��́Anetchira�ł��B
+## PythonでRPAを実装しよう(第1回:Wordを使用したファイル変換)
 
-�F�����Python��win32com�Ƃ������C�u�����������m�ł����H
-COM�C���^�[�t�F�[�X�o�R��PC�ɃC���X�g�[������Ă���A�v���P�[�V�������N���A�I���A�����Ċe�푀����s�����Ƃ��\�ł��B
-�����Microsoft Word��win32com�Ő��䂵�A�u�����͎��Ƃł���Ă��邱�Ƃ��X�N���v�g�ŋL�q���Ď������v���������Ǝv���܂��B
+こんにちは、netchiraです。
 
-### COM�Ƃ�
-�uCOM �Ƃ́v�ƃO�O�b�Ă݂Ă��������B�F��ȏ�񂪌����邩�Ǝv���܂��B
-���Ȃ�ɂ��������������ƁAWindows�œ��삷��A�v���P�[�V����������Ƃ��ɗ\�ߊO��������Ăт�����悤�ɕ����I�ɋ@�\���R���|�[�l���g�������Ă����Z�p�̂��Ƃł��B
-Python�ł͕W�����C�u�����Ƃ���win32com���p�ӂ���Ă���A����ɂ��COM�C���^�[�t�F�[�X�o�R��Windows�A�v���P�[�V�������O�����琧��ł��܂��B
+皆さんはPythonのwin32comというライブラリをご存知ですか？
+COMインターフェース経由でPCにインストールされているアプリケーションを起動、終了、そして各種操作を行うことが可能です。
+今回はMicrosoft Wordをwin32comで制御し、「いつもは手作業でやっていることをスクリプトで記述して自動化」させたいと思います。
 
-### ����̎������l�^
-����́AMicrosoft Word���g�p����docx�t�@�C����HTML�`����PDF�`���ɂ��āu���O��t���ĕۑ��v�������Ƃ��������������Ǝv���܂��B
+### COMとは
+「COM とは」とググッてみてください。色んな情報が見つかるかと思います。
+私なりにざっくり説明すると、Windowsで動作するアプリケーションをつくるときに予め外部からも呼びだせるように部分的に機能をコンポーネント化させておく技術のことです。
+Pythonでは標準ライブラリとしてwin32comが用意されており、これによりCOMインターフェース経由でWindowsアプリケーションを外部から制御できます。
 
-�F�����Word�ō쐬����������PDF�������Ƃ͂�������Ƃ���܂���ˁH
+### 今回の自動化ネタ
+今回は、Microsoft Wordを使用してdocxファイルをHTML形式やPDF形式にして「名前を付けて保存」をする作業を自動化したいと思います。
 
-![main_window](../picture/ConvertDocx2HtmlUsingWord/WordSaveAs2.PNG)
+皆さんもWordで作成した文書をPDF化する作業はやったことありますよね？
+
+![Word_Window](../picture/ConvertDocx2HtmlUsingWord/WordSaveAs2.PNG)
 
 
-����ł��B
+これです。
 
-�܂��A���������������Python�X�N���v�g��p�ӂ��āA�ǂ�ȃ����b�g������񂾁H���Ċ����ł����A�Ƃ肠�����Љ�܂��B
+まあ、これを自動化するPythonスクリプトを用意して、どんなメリットがあるんだ？って感じですが、とりあえず紹介します。
 
-### Python�X�N���v�g
-�ȉ��Adocx��HTML�ɕϊ�����Python�X�N���v�g(�֐�)�ł��B
+### Pythonスクリプト
+以下、docxをHTMLに変換するPythonスクリプト(関数)です。
 
-{% highlight <Python> [linenos] %}
+{% highlight <Python> [linenos] %} 
 
 def ConvertDocx2HtmlUsingWord(DocxFilePath):
     import win32com.client
     import os
 
-    # �t�@�C���g���q�̊m�F
+    # ファイル拡張子の確認
     if os.path.exists(DocxFilePath) and (DocxFilePath[-5:] == ".docx"):
-        # �t�@�C���p�X����g���q(�s���I�h�܂�5������)����菜��
+        # ファイルパスから拡張子(ピリオド含む5文字分)を取り除く
         str_FilePathNoExt = DocxFilePath[0:-5]
-        # �t�@�C���̊g���q�Ƃ���".htm"��t�^
+        # ファイルの拡張子として".htm"を付与
         str_HtmlFilePath = str_FilePathNoExt + ".htm"
-        # �t�@�C���p�X�Ƃ��Đ���
+        # ファイルパスとして生成
         HtmlFilePath = os.path.abspath(str_HtmlFilePath)
     else:
         raise UserWarning("File Format is not .docx")
     
-    # Word���N������ : Application�I�u�W�F�N�g�𐶐�����
+    # Wordを起動する : Applicationオブジェクトを生成する
     Application = win32com.client.Dispatch("Word.Application")
 
-    # Word����ʕ\������ : Visible�v���p�e�B��True�ɂ���
+    # Wordを画面表示する : VisibleプロパティをTrueにする
     Application.Visible = True
 
-    # �����������J��
+    # 既存文書を開く
     doc = Application.Documents.Open(DocxFilePath)
 
-    # ���O��t���ĕۑ� : �t�@�C���`����[Web�y�[�W(�t�B���^�[��)]�Ɏw��
+    # 名前を付けて保存 : ファイル形式を[Webページ(フィルター後)]に指定
     WdFormatHTML = 8
     WdFormatFilteredHTML = 10
     doc.SaveAs2(HtmlFilePath, FileFormat=WdFormatFilteredHTML)
 
-    # ���������
+    # 文書を閉じる
     doc.Close()
 
-    # Word���I������ : Quit���\�b�h���Ă�
+    # Wordを終了する : Quitメソッドを呼ぶ
     Application.Quit()
 
 {% endhighlight %}
 
 
-������SaveAs2�Ƃ����֐����o�ꂵ�Ă���̂ł����AFileFormat�Ƃ��������ɂ͐���(�萔)���w�肷��ΐF��ȃt�@�C���`����I�ׂ܂��B
+ここにSaveAs2という関数が登場してくるのですが、FileFormatという引数には数字(定数)を指定すれば色んなファイル形式を選べます。
 
-���̒萔�ɂ��Ă̎d�l�͉��L��web�y�[�W�ɋL�ڂ���Ă��܂��B
+その定数についての仕様は下記のwebページに記載されています。
 
-[Microsoft VBA���t�@�����X WdSaveFormat](https://docs.microsoft.com/ja-jp/office/vba/api/word.wdsaveformat)
+[Microsoft VBAリファレンス WdSaveFormat](https://docs.microsoft.com/ja-jp/office/vba/api/word.wdsaveformat)
 
-���Ȃ݂ɁASaveAs2�֐���FileFormat�Ƃ������������݂��邱�Ƃ́A���L��web�y�[�W���甭�����܂����B�����������Љ�B
+ちなみに、SaveAs2関数にFileFormatという引数が存在することは、下記のwebページから発見しました。いちおうご紹介。
 
 [Python Programming](https://en.m.wikibooks.org/wiki/Python_Programming/MS_Word)
 
-�����̏�����肷��̂ɁA���Ԃ�������܂����c
+これらの情報を入手するのに、時間がかかりました…
 
-### �Ȃ�HTML�ɕϊ�����X�N���v�g���ɂ��������H
-��������͏����]�k�ł��B
-Word �t�@�C���ɍ쐬���ꂽ�I�[�g�V�F�C�v(�}�`)��L�����o�X���āAHTML������ƑS�ĉ摜�t�@�C���`��(png)�Ő��������̂ł��B
-Word�ō쐬�����}�`����ŕʂ̗p�r�Ɏg���ꍇ�A�����葁���ł��B
+### なぜHTMLに変換するスクリプトを例にあげたか？
+ここからは少し余談です。
+Word ファイルに作成されたオートシェイプ(図形)やキャンバスって、HTML化すると全て画像ファイル形式(png)で生成されるのです。
+Wordで作成した図形を後で別の用途に使う場合、手っ取り早いです。
 
 
-### RPA���āA�ǂ����H
-����ŁARPA���������邽�߂̃A�v���P�[�V�����́u�p�[�c�v����ꂽ���ȁA�Ǝv���Ă��܂��B
-���̒��Ŕ̔�����Ă���RPA(���Ƃ���[�R��](https://www.celf.biz/rpa/)�Ƃ�)�Ɣ�ׂ�ƁA������Word�̃t�@�C���ϊ��������A�Ƃ������x�����Ǝv���܂����A���������̂������ς�����Ă�����RPA�ł���̂ł́H�ƌl�I�Ɋ��҂��Ă��܂��B
+### RPAって、どこが？
+これで、RPAを実現するためのアプリケーションの「パーツ」が作れたかな、と思っています。
+世の中で販売されているRPA(たとえば[コレ](https://www.celf.biz/rpa/)とか)と比べると、たかがWordのファイル変換だけか、というレベルかと思いますが、こういうのをいっぱい作っていけばRPAできるのでは？と個人的に期待しています。
 
-�ȏ�ł��B
+
+以上です。
+
+
