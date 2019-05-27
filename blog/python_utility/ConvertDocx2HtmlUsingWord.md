@@ -34,7 +34,7 @@ Pythonでは標準ライブラリとしてwin32comが用意されており、こ
 以下、docxをHTMLに変換するPythonスクリプト(関数)です。
 
 
-```Python
+```
 def ConvertDocx2HtmlUsingWord(DocxFilePath):
     import win32com.client
     import os
