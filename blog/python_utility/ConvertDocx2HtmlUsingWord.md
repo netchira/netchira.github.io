@@ -33,8 +33,8 @@ Pythonでは標準ライブラリとしてwin32comが用意されており、こ
 ### Pythonスクリプト
 以下、docxをHTMLに変換するPythonスクリプト(関数)です。
 
-{% highlight <Python> [linenos] %} 
 
+'''Python: ConvertDocx2HtmlUsingWord.py
 def ConvertDocx2HtmlUsingWord(DocxFilePath):
     import win32com.client
     import os
@@ -70,7 +70,7 @@ def ConvertDocx2HtmlUsingWord(DocxFilePath):
     # Wordを終了する : Quitメソッドを呼ぶ
     Application.Quit()
 
-{% endhighlight %}
+'''
 
 
 ここにSaveAs2という関数が登場してくるのですが、FileFormatという引数には数字(定数)を指定すれば色んなファイル形式を選べます。
