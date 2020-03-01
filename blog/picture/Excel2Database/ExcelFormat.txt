@@ -1,0 +1,32 @@
+[DB化するExcelファイルパス一覧]
+C:\PyTemp\Sample1.xlsx
+C:\PyTemp\Sample2.xlsx
+C:\PyTemp\Sample3.xlsx
+
+
+
+[変数(DB登録開始行)]
+FirstRow : 8行目
+
+
+[自動追加項目]
+個別ID : ON
+データ生成日時 : ON
+
+
+[メイン項目]
+やるべきこと   : TEXT     : todo               : 2列目
+対応方法       : TEXT     : result             : 3列目
+担当者名       : TEXT     : pic                : 4列目
+期日           : DATETIME : deadline_date      : 5列目
+対応完了日     : DATETIME : finished_date      : 6列目
+承認者名       : TEXT     : manager            : 7列目
+承認日         : DATETIME : checked_date       : 8列目
+備考           : TEXT     : note               : 9列目
+
+
+[サブ項目]
+会議名 : 1行目,2列目
+Excelファイル名 : ON
+Excelファイル最終更新日時 : ON
+
