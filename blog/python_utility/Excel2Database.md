@@ -21,6 +21,7 @@ dbファイルを生成するスクリプトを設計しました。
 
 ソースコードは以下を参照ください。
 
+[Excel2Database.py](https://github.com/netchira/netchira.github.io/blob/master/python/Excel2Database.py)
 
 スクリプトの動作の概要を説明します。
 
@@ -72,6 +73,13 @@ Googleで検索して見つけてください。
 ここでは、承認者名と承認日と備考を追加してみました。
 また、このtxtファイル内に、参照するExcelファイル類のファイルパスも記載することとします。
 ここに記載されたExcelファイルは、お約束として、すべて同じフォーマットで記載されている必要があります。
+
+
+### 本スクリプト対応のExcelファイルフォーマットおよびtxtファイル
+Excelファイルフォーマットおよび上記で説明したtxtファイルについても、参考までに公開します。
+
+[ExcelFormat.txt](https://github.com/netchira/netchira.github.io/blob/master/blog/picture/Excel2Database/ExcelFormat.txt)
+[Sample1.xlsx](https://github.com/netchira/netchira.github.io/blob/master/blog/picture/Excel2Database/Sample1.xlsx)
 
 
 ### 感想
